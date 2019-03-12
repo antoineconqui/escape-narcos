@@ -20,7 +20,7 @@
 
     <div class="frame">
 
-        <p>Bienvenue <?php echo $_SESSION['pseudo']; ?>, dans le jeu "Escape The Narcos" ! - <a href="stats.php">Statistiques du joueur</a> - <a href="logout.php">Déconnexion</a></p>
+        <h2>Statistiques du joueur</h2>
 
         <div class="row">
 

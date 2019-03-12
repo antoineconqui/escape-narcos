@@ -9,15 +9,16 @@ body{
     color: #dfe6e9;
 }
 
-a{
-    text-decoration-line: none;
-}
-
 .frame{
     text-align: center;
     border: 1px #d63031 solid;
     border-radius: 20px;
     margin: 100px;
+    padding: 20px;
+}
+
+.form{
+    margin: auto
 }
 
 .blink{
@@ -26,25 +27,32 @@ a{
     margin: 100px;    
 }
 
-.blink h1{
+row{
+    margin: auto;
+}
+
+h1{
     color: #d63031;
     font-size: 7em;
 }
 
-.frame h2{
+h2{
     text-align: center;
     font-size: 2em;
     color: #dfe6e9;
+    text-decoration-line: none;
 }
 
-.frame h2:hover{
+h2:hover, a:hover{
     color: #d63031;
+    text-decoration-line: none;
 }
 
 .selected{
     border-bottom: 1px solid #d63031;
     color: #d63031;
-    
+    text-decoration-line: none;
+    padding-bottom: 20px;
 }
 
 .form{

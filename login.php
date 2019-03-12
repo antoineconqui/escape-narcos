@@ -2,6 +2,8 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <title>Escape The Narcos</title>
     <link rel="stylesheet" href="style.css" />
 </head>
@@ -22,8 +24,15 @@
                     header("Location: index.php");
                 }
                 else{
-                    echo "<h3>Pseudo / Mot de passe incorrect.</h3>
-                    <br/><a href='login.php'>Essayer à nouveau</a></div>";
+                    echo "
+                    <div class=\"blink\">
+                        <h1>ESCAPE THE NARCOS</h1>
+                    </div>
+
+                    <div class=\"frame\">
+                        <h3>Pseudo / Mot de passe incorrect.</h3>
+                        <br><a href='login.php'>Essayer à nouveau</a>
+                    </div>";
                 }
         }
         else{
@@ -42,16 +51,16 @@
             </div>
 
             <div class="col-6">
-                <h2 id="login selected">Connexion</h2>
+                <h2 class="selected" id="login">Connexion</h2>
             </div>
 
         </div>
 
         <div class="row">
-            <form action="" method="post" name="login">
-                <input type="text" name="pseudo" placeholder="Pseudo" required /><br><br>
-                <input type="password" name="password" placeholder="Password" required /><br><br>
-                <input name="submit" type="submit" value="Envoyer" />
+            <form class="form" action="" method="post" name="login">
+                <input type="text" name="pseudo" placeholder="Pseudo" required>
+                <br><br><input type="password" name="password" placeholder="Password" required>
+                <br><br><input name="submit" type="submit" value="Envoyer">
             </form>
         </div>
         
