@@ -5,29 +5,36 @@
 }
 
 body{
-    background: #dfe6e9;
-    color: #2d3436;
+    background: #2d3436;
+    color: #dfe6e9;
+}
+
+a{
+    text-decoration-line: none;
 }
 
 .frame{
     text-align: center;
     border: 1px #d63031 solid;
     border-radius: 20px;
-    margin: 10%;
+    margin: 100px;
 }
 
 .blink{
     animation: blink 2s linear infinite;
+    text-align: center;
+    margin: 100px;    
 }
 
-.frame h1{
+.blink h1{
     color: #d63031;
-    font-size: 5em;
+    font-size: 7em;
 }
 
 .frame h2{
     text-align: center;
     font-size: 2em;
+    color: #dfe6e9;
 }
 
 .frame h2:hover{
