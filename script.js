@@ -1,11 +1,15 @@
-document.getElementById("register").addEventListener("click", function(){
-    document.getElementById("login").classList.remove("selected");
-    document.getElementById("register").classList.add("selected");
+document.getElementById("single").addEventListener("click", function(){
+    document.getElementById("multi").classList.remove("selected");
+    document.getElementById("single").classList.add("selected");
+    document.getElementById("multi-content").hidden = true;
+    document.getElementById("single-content").hidden = false;
 });
 
-document.getElementById("login").addEventListener("click", function(){
-    document.getElementById("login").classList.add("selected");
-    document.getElementById("register").classList.remove("selected");
+document.getElementById("multi").addEventListener("click", function(){
+    document.getElementById("multi").classList.add("selected");
+    document.getElementById("single").classList.remove("selected");
+    document.getElementById("multi-content").hidden = false;
+    document.getElementById("single-content").hidden = true;
 });
 
 document.getElementById("create").addEventListener("click", function(){

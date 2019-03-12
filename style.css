@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
 @keyframes blink{
     0%{opacity: 0;}
     50%{opacity: 1;}
@@ -7,6 +9,7 @@
 body{
     background: #2d3436;
     color: #dfe6e9;
+    font-family: 'Raleway', sans-serif;
 }
 
 .frame{
@@ -36,7 +39,7 @@ h1{
     font-size: 7em;
 }
 
-h2{
+h2, h3{
     text-align: center;
     font-size: 2em;
     color: #dfe6e9;
@@ -48,9 +51,20 @@ h2:hover, a:hover{
     text-decoration-line: none;
 }
 
-.selected{
+a, h3:hover{
+    color: #0984e3;
+}
+
+h2.selected{
     border-bottom: 1px solid #d63031;
     color: #d63031;
+    text-decoration-line: none;
+    padding-bottom: 20px;
+}
+
+h3.selected{
+    border-bottom: 1px solid #0984e3;
+    color: #0984e3;
     text-decoration-line: none;
     padding-bottom: 20px;
 }
@@ -58,4 +72,31 @@ h2:hover, a:hover{
 .form{
     width: 90%;
     margin: 5%;
+}
+
+input{
+    background-color: rgba(255, 255, 255, 0);
+    color: #dfe6e9; 
+    border: 1px #d63031 solid;
+    border-radius: 5px;
+}
+
+::placeholder {
+    color: #dfe6e9; 
+}
+
+#single-content{
+    display: block;
+}
+
+.rules{
+    display: block;
+    margin: auto;
+    color: #dfe6e9;
+    width: 40%;    
+    text-align: justify;
+}
+
+.next{
+    align-content: center;
 }

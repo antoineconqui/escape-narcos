@@ -1,4 +1,9 @@
 <?php
+    require('db.php');
+    mysqli_query($con,"CREATE DATABASE IF NOT EXISTS escape-narcos ");
+    mysqli_query($con,"CREATE TABLE IF NOT EXISTS users (pseudo varchar(50) PRIMARY KEY,password varchar(50))");
+    mysqli_query($con,"CREATE TABLE IF NOT EXISTS teams (id INT PRIMARY KEY, player1 varchar(50), player2 varchar(50), player3 varchar(50), player4 varchar(50))");
+    // mysqli_query($con,"CREATE TABLE IF NOT EXISTS games (pseudo varchar(50) PRIMARY KEY,password varchar(50))");
     include("auth.php");
 ?>
 
@@ -25,19 +30,39 @@
         <div class="row">
 
             <div class="col-6">
-                <h2 id="create">Créer une partie</h2>
+                <h2 class="selected" id="single">Un seul ordinateur</h2>
             </div>
 
             <div class="col-6">
-                <h2 class="selected" id="join">Rejoindre une partie</h2>
+                <h2 id="multi">Plusieurs ordinateurs</h2>
             </div>
 
         </div>
 
-        <p><a href="dashboard.php">Dashboard</a></p>
+        <div class="row" id="single-content">
+            
+            <?php include 'single-computer.php'; ?>
+
+        </div>
+
+        <div class="row" id="multi-content" hidden>
+
+            <div class="col-6">
+                <h3 id="create">Créer une partie</h3>
+            </div>
+
+            <div class="col-6">
+                <h3 class="selected" id="join">Rejoindre une partie</h3>
+            </div>
+
+        </div>
+
+        
 
         
     </div>
+
+    <script src="script.js"></script>
     
 </body>
 

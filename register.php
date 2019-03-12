@@ -17,8 +17,17 @@
         $password = mysqli_real_escape_string($con,stripslashes($_REQUEST['password']));
         $result = mysqli_query($con,"INSERT INTO users VALUES ('$pseudo', '".md5($password)."')");
         if($result){
-            echo "<h3>Inscription réussie !</h3>
-            <br/><a href='login.php'>Se connecter</a></div>";
+            echo "
+            <div class=\"blink\">
+                <h1>ESCAPE THE NARCOS</h1>
+            </div>
+
+            <div class=\"frame\">
+                <h3>Inscription réussie !</h3>
+                <br><br/><a href='login.php'>Se connecter</a></div>
+            </div>";
+            echo "
+            ";
         }
         else{
             echo "
