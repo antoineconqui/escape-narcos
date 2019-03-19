@@ -2,11 +2,10 @@
     require('db.php');
 
     if (isset($_POST['pseudo1'])){
-
-        $id = -1;
+        $team = -1;
         do{
-            $id++;
-            $query = "INSERT INTO teams (id,player1) VALUES ('".$id."','".$_SESSION['pseudo']."')";
+            $team++;
+            $query = "INSERT INTO teams (id,player1) VALUES ('".$team."','".$_SESSION['pseudo']."')";
         } while(!mysqli_query($con,$query));
 
         if ($_POST['pseudo4']!="")
@@ -24,18 +23,17 @@
 
         echo "<br>Les ".$n." joueurs sont :<br><br>";
 
-        for ($i=1; $i < $n+1; $i++) { 
+        for ($i=1; $i < $n+1; $i++) {
             $pseudo = mysqli_real_escape_string($con,stripslashes($_REQUEST['pseudo'.$i]));
             $password = mysqli_real_escape_string($con,stripslashes($_REQUEST['password'.$i]));
             if(mysqli_num_rows(mysqli_query($con,"SELECT * FROM users WHERE pseudo='$pseudo'and password='".md5($password)."'"))==1){
-                mysqli_query($con,"UPDATE teams SET player".$i." = '".$pseudo."'WHERE id=$id");
+                mysqli_query($con,"UPDATE teams SET player".$i." = '".$pseudo."'WHERE id=$team");
                 echo "<div class=\"pseudo\">$pseudo</div>";
             }
             else
                 echo "<div>Pseudo/Mot de passe du joueur ".$i." incorrect. </div>";
         }
-
-        echo "<br><p><a href=\"solo-game.php\"> Lancer la partie</a></p>";
+        echo "<br><p><a href=\"rules-solo.php\"> Lancer la partie</a></p>";
     }
     else{
 ?>

@@ -1,6 +1,5 @@
 <?php
     require('db.php');
-    mysqli_query($con,"CREATE DATABASE IF NOT EXISTS escape-narcos ");
     mysqli_query($con,"CREATE TABLE IF NOT EXISTS users (pseudo varchar(50) PRIMARY KEY,password varchar(50))");
     mysqli_query($con,"CREATE TABLE IF NOT EXISTS teams (id INT PRIMARY KEY, player1 varchar(50), player2 varchar(50), player3 varchar(50), player4 varchar(50))");
     // mysqli_query($con,"CREATE TABLE IF NOT EXISTS games (pseudo varchar(50) PRIMARY KEY,password varchar(50))");
@@ -47,13 +46,16 @@
 
         <div class="row" id="multi-content" hidden>
 
-            <div class="col-6">
+            <span>
+                
+            </span>
+            <!-- <div class="col-6">
                 <h3 id="create">Créer une partie</h3>
             </div>
 
             <div class="col-6">
                 <h3 class="selected" id="join">Rejoindre une partie</h3>
-            </div>
+            </div> -->
 
         </div>
 

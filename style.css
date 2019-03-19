@@ -46,7 +46,7 @@ h2, h3{
     text-decoration-line: none;
 }
 
-h2:hover, a:hover{
+.col-6 h2:hover, a:hover{
     color: #d63031;
     text-decoration-line: none;
 }
@@ -93,10 +93,159 @@ input{
     display: block;
     margin: auto;
     color: #dfe6e9;
-    width: 40%;    
+    width: 40%;
     text-align: justify;
 }
 
 .next{
+    display: block;
+    margin: auto;
     align-content: center;
 }
+
+/* ROOMS */
+
+    /* UTILITAIRES */
+
+    .titre{
+        animation: blink 2s linear infinite;
+        padding-top: 50%;
+        transform: translateY(-50%);
+        font-size: 3em;
+    }
+
+    #enigme{
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        color: #dfe6e9;
+        background-color: #2d3436;
+        border-radius: 5px;
+        padding: 5px; 
+    }
+
+    #timer{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: #dfe6e9;
+        background-color: #2d3436;
+        border-radius: 5px;
+        padding: 5px; 
+    }
+
+    #indice{
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        background: #00000000;
+        color: #dfe6e9;
+        border: 0;
+        background-color: #2d3436;
+        border-radius: 5px;
+    }
+
+    #chat{
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background: #00000000;
+        color: #dfe6e9;
+        border: 0;
+        background-color: #2d3436;
+        border-radius: 5px;
+    }
+
+    #chat form{
+        margin: 0;
+    }
+
+    #chat input{
+        border: 0;
+    }
+
+    #chat button{
+        border: 1px #dfe6e9 solid;
+        background: #00000000;
+        color: #dfe6e9;
+        border-radius: 5px;
+    }
+
+    #message{
+        width: 220px;
+    }
+    
+    /* ROOM 1 */
+
+#obscurite{
+    margin: 0;
+    padding: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background: black;
+}
+
+    #interrupteur{
+        position: absolute; 
+        top: 50%;
+        left: 20%;
+        width:50px;
+        height:100px;
+        opacity: 0;
+    }
+
+#lumiere{
+    margin: 0;
+    padding: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background-image: url("media/room1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+    #cocaine_1{
+        position: absolute;
+        top: 50%;
+        left: 10%;
+        width: 10%;
+        z-index: 9;
+        border: 1px solid #d3d3d3;
+        text-align: center;
+        box-shadow: 0 0 1em gold;
+    }
+
+    .image{
+        width: 100%;
+    }
+
+    #closed_door{
+        position: absolute;
+        bottom: 50%;
+        left: 45%;
+        width: 10%; 
+        box-shadow: 0 0 1em red;
+    }
+
+    #open-door{
+        position: absolute;
+        bottom: 50%;
+        left: 50%;
+        box-shadow: 0 0 1em gold;
+    }
+
+    #balance_droite{
+        position: absolute;
+        bottom: 50%;
+        left: 35%;
+        width: 5%;
+    }
+
+    #balance_gauche{
+        position: absolute;
+        bottom: 50%;
+        left: 60%;
+        width: 5%;
+    }
