@@ -26,8 +26,6 @@
                 <h3>Inscription réussie !</h3>
                 <br><br/><a href='login.php'>Se connecter</a></div>
             </div>";
-            echo "
-            ";
         }
         else{
             echo "

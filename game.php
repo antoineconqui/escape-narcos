@@ -19,14 +19,6 @@
         <?php include 'room1.php'; ?>
     </div>
 
-    <div id="room2" hidden>
-        <?php include 'room2.php'; ?>
-    </div>
-
-    <div id="room3" hidden>
-        <?php include 'room3.php'; ?>
-    </div>
-
     <button id="indice" hidden>UN INDICE ?</button>
 
     <span id="enigme" hidden>Enigme n°1</span>

@@ -6,29 +6,103 @@
     100%{opacity: 0;}
 }
 
+@keyframes semiblink{
+    0%{opacity: 0.3;}
+    50%{opacity: 1;}
+    100%{opacity: 0.3;}
+}
+
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+ 
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
 body{
     background: #2d3436;
     color: #dfe6e9;
     font-family: 'Raleway', sans-serif;
 }
 
+.blink{
+    animation: blink 2s linear infinite;
+    text-align: center;
+    margin: 30px;    
+}
+
+.menu{
+    text-align: center;
+}
+
 .frame{
     text-align: center;
+    width: 60%;
     border: 1px #d63031 solid;
     border-radius: 20px;
-    margin: 100px;
+    margin: auto;
     padding: 20px;
 }
+
+.image{
+    height: 550px;
+    width: 90%;
+}
+
+.caption{
+    width: 40%;
+    margin: auto;
+    background: #2d3436;
+    opacity: 0.7;
+    border: 1px #dfe6e9 solid;
+    border-radius: 5px;
+    color: white;
+}
+
+#zoomBackground{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background: #2d3436;
+    opacity: 0.5;
+}
+
+.zoom{
+    position: absolute; 
+    top: 30%;
+    left: 30%;
+    width:40%;
+    height:40%;
+    padding: 30px;
+    background: #2d3436;
+    border: 1px #d63031 solid;
+    border-radius: 5px;
+    color: #d63031;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .form{
     margin: auto
 }
 
-.blink{
-    animation: blink 2s linear infinite;
-    text-align: center;
-    margin: 100px;    
-}
 
 row{
     margin: auto;
@@ -37,13 +111,6 @@ row{
 h1{
     color: #d63031;
     font-size: 7em;
-}
-
-h2, h3{
-    text-align: center;
-    font-size: 2em;
-    color: #dfe6e9;
-    text-decoration-line: none;
 }
 
 .col-6 h2:hover, a:hover{
@@ -74,6 +141,8 @@ h3.selected{
     margin: 5%;
 }
 
+
+
 input{
     background-color: rgba(255, 255, 255, 0);
     color: #dfe6e9; 
@@ -85,9 +154,7 @@ input{
     color: #dfe6e9; 
 }
 
-#single-content{
-    display: block;
-}
+/* RULES */
 
 .rules{
     display: block;
@@ -103,15 +170,20 @@ input{
     align-content: center;
 }
 
-/* ROOMS */
-
-    /* UTILITAIRES */
+/* UTILITAIRES */
 
     .titre{
         animation: blink 2s linear infinite;
         padding-top: 50%;
         transform: translateY(-50%);
         font-size: 3em;
+    }
+
+    .indication{
+        animation: semiblink 3s linear infinite;
+        padding-top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.5em;
     }
 
     #enigme{
@@ -175,7 +247,7 @@ input{
         width: 220px;
     }
     
-    /* ROOM 1 */
+/* ROOMS */
 
 #obscurite{
     margin: 0;
@@ -188,9 +260,9 @@ input{
 
     #interrupteur{
         position: absolute; 
-        top: 50%;
-        left: 20%;
-        width:50px;
+        top: 42%;
+        left: 63%;
+        width:100px;
         height:100px;
         opacity: 0;
     }
@@ -201,51 +273,24 @@ input{
     top:0;
     width: 100%;
     height: 100%;
-    background-image: url("media/room1.jpg");
+    background-image: url("media/wallpaper.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-    #cocaine_1{
-        position: absolute;
-        top: 50%;
-        left: 10%;
-        width: 10%;
-        z-index: 9;
-        border: 1px solid #d3d3d3;
-        text-align: center;
-        box-shadow: 0 0 1em gold;
-    }
-
-    .image{
-        width: 100%;
-    }
-
-    #closed_door{
-        position: absolute;
-        bottom: 50%;
+    #verrou{
+        position: absolute; 
+        top: 55%;
         left: 45%;
-        width: 10%; 
-        box-shadow: 0 0 1em red;
+        width:100px;
+        height:100px;
+        opacity: 0;
     }
 
-    #open-door{
-        position: absolute;
-        bottom: 50%;
-        left: 50%;
-        box-shadow: 0 0 1em gold;
-    }
-
-    #balance_droite{
-        position: absolute;
-        bottom: 50%;
-        left: 35%;
-        width: 5%;
-    }
-
-    #balance_gauche{
-        position: absolute;
-        bottom: 50%;
-        left: 60%;
-        width: 5%;
+    #verrouZoom input{
+        height: 100px;
+        width: 100px;
+        font-size: 2em;
+        display: inline-block;
+        text-align: center;
     }

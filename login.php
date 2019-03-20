@@ -16,8 +16,7 @@
         if (isset($_POST['pseudo'])){
             $pseudo = mysqli_real_escape_string($con,stripslashes($_REQUEST['pseudo']));
             $password = mysqli_real_escape_string($con,stripslashes($_REQUEST['password']));
-            $query = "SELECT * FROM users WHERE pseudo='$pseudo'and password='".md5($password)."'";
-            $result = mysqli_query($con,$query) or die(mysql_error());
+            $result = mysqli_query($con,"SELECT * FROM users WHERE pseudo='$pseudo'and password='".md5($password)."'");
             $rows = mysqli_num_rows($result);
                 if($rows==1){
                     $_SESSION['pseudo'] = $pseudo;

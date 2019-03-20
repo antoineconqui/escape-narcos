@@ -21,7 +21,10 @@
             }
         }
 
-        echo "<br>Les ".$n." joueurs sont :<br><br>";
+        if($n==1)
+            echo "<br>Le joueur est :<br><br>";
+        else
+            echo "<br>Les ".$n." joueurs sont :<br><br>";
 
         for ($i=1; $i < $n+1; $i++) {
             $pseudo = mysqli_real_escape_string($con,stripslashes($_REQUEST['pseudo'.$i]));
@@ -40,13 +43,22 @@
         <form class="form" action="" method="post" name="login">
             <br><input type="text" name="pseudo1" placeholder="Pseudo Joueur 1">
             <input type="password" name="password1" placeholder="Password">
-            <br><input type="text" name="pseudo2" placeholder="Pseudo Joueur 2">
-            <input type="password" name="password2" placeholder="Password">
-            <br><input type="text" name="pseudo3" placeholder="Pseudo Joueur 3">
-            <input type="password" name="password3" placeholder="Password">
-            <br><input type="text" name="pseudo4" placeholder="Pseudo Joueur 4">
-            <input type="password" name="password4" placeholder="Password">
-            <br><br><input name="submit" type="submit" value="Envoyer">
+            <div id="player2" hidden>
+                <br><input type="text" name="pseudo2" placeholder="Pseudo Joueur 2">
+                <input type="password" name="password2" placeholder="Password">
+            </div>
+            <div id="player3" hidden>
+                <br><input type="text" name="pseudo3" placeholder="Pseudo Joueur 3">
+                <input type="password" name="password3" placeholder="Password">
+            </div>
+            <div id="player4" hidden>
+                <br><input type="text" name="pseudo4" placeholder="Pseudo Joueur 4">
+                <input type="password" name="password4" placeholder="Password">
+            </div>
+            <br><br>
+            <button id="add_player">Ajouter un joueur</button>
+            <button type="submit">Démarrer la partie</button>
+            
         </form>
 <?php
     }

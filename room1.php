@@ -2,16 +2,26 @@
     <div class="titre" id="titre1">
         <h2>Pièce Numéro 1 : Le Cachot</h2>
     </div>
+    <div class="indication" id="indication1" hidden>
+        <h2>Enigme 1 : Sortez de l'obscurité</h2>
+    </div>
     <button id="interrupteur" hidden></button>
 </div>
 
 <div id="lumiere" hidden>
-    <div id="cocaine_1">
-        <img class="image" src="media/cocaine.png">
+    <div id="zoomBackground" hidden></div>
+    <button id="verrou"></button>
+    <div class="zoom" hidden>
+        <form action="verrou.php" method="get">
+            <h4>Verrou</h4>
+            <br><br><br>
+            <input type="number" name="int1" min="0" max="9">
+            <input type="number" name="int2" min="0" max="9">
+            <input type="number" name="int3" min="0" max="9">
+            <input type="number" name="int4" min="0" max="9">
+            <br><br><br>
+            <button type="submit">Valider</button>
+            <span id="message"></span>
+        </form>
     </div>
-    <img id="closed_door" src="media/closed_door.png">
-    <img id="open_door" src="media/open_door.png" hidden>
-    <img id="balance_droite" src="media/balance.png">
-    <img id="balance_gauche" src="media/balance.png">
-    
 </div>
