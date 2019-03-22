@@ -2,29 +2,19 @@
     require('db.php');
 
     if (isset($_POST['pseudo1'])){
-        $team = -1;
-        do{
-            $team++;
-            $query = "INSERT INTO teams (id,player1) VALUES ('".$team."','".$_SESSION['pseudo']."')";
-        } while(!$conn->query($query));
 
         if ($_POST['pseudo4']!="")
-            $n=4;
+        $n=4;
         else{
             if ($_POST['pseudo3']!="")
-                $n=3;
+            $n=3;
             else{
                 if ($_POST['pseudo2']!="")
-                    $n=2;
+                $n=2;
                 else
-                    $n=1;
+                $n=1;
             }
         }
-
-        if($n==1)
-            echo "<br>Le joueur est :<br><br>";
-        else
-            echo "<br>Les ".$n." joueurs sont :<br><br>";
 
         for ($i=1; $i < $n+1; $i++) {
             $pseudo = $conn->real_escape_string(stripslashes($_REQUEST['pseudo'.$i]));
@@ -36,39 +26,39 @@
             else
                 echo "<div>Pseudo/Mot de passe du joueur ".$i." incorrect. </div>";
         }
-        echo "<br><p><a href=\"rules-solo.php\"> Lancer la partie</a></p>";
+        
+        $conn->query("INSERT INTO teams (id,player1) VALUES ('".$team."','".$_SESSION['pseudo']."')"));
+        if($n==1)
+            echo "<br>Le joueur est :<br><br>";
+        else
+            echo "<br>Les ".$n." joueurs sont :<br><br>";
+
+        echo "<br><p><a href=\"rules-solo.php\">Lancer la partie</a></p>";
     }
     else{
 ?>
         <form class="form" action="" method="post" name="login">
             <br><input type="text" name="pseudo1" placeholder="Pseudo Joueur 1">
             <input type="password" name="password1" placeholder="Password">
-            </form>
-        
-        <div id="player2" hidden>
-            <form action="" method="post" name="player2">
+            <div id="player2" hidden>
                 <br><input type="text" name="pseudo2" placeholder="Pseudo Joueur 2">
                 <input type="password" name="password2" placeholder="Password">
                 <button type="submit">Valider</button>
-            </form>
-        </div>
-        <div id="player3" hidden>
-            <form action="" method="post" name="player2">
+            </div>
+            <div id="player3" hidden>
                 <br><input type="text" name="pseudo3" placeholder="Pseudo Joueur 3">
                 <input type="password" name="password3" placeholder="Password">
-                <button type="submit">Valider</button>                
-            </form>
-        </div>
-        <div id="player4" hidden>
-            <form action="" method="post" name="player2">
+                <button type="submit">Valider</button>
+            </div>
+            <div id="player4" hidden>
                 <br><input type="text" name="pseudo4" placeholder="Pseudo Joueur 4">
                 <input type="password" name="password4" placeholder="Password">
                 <button type="submit">Valider</button>
-            </form>
-        </div>
+            </div>
             <br><br>
             <button type="button" id="add_player">Ajouter un joueur</button>
             <button type="submit">Démarrer la partie</button>
+        </form>
             
 <?php
     }
