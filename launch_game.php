@@ -6,7 +6,7 @@
         do{
             $team++;
             $query = "INSERT INTO teams (id,player1) VALUES ('".$team."','".$_SESSION['pseudo']."')";
-        } while(!mysqli_query($con,$query));
+        } while(!$conn->query($query));
 
         if ($_POST['pseudo4']!="")
             $n=4;
@@ -27,10 +27,10 @@
             echo "<br>Les ".$n." joueurs sont :<br><br>";
 
         for ($i=1; $i < $n+1; $i++) {
-            $pseudo = mysqli_real_escape_string($con,stripslashes($_REQUEST['pseudo'.$i]));
-            $password = mysqli_real_escape_string($con,stripslashes($_REQUEST['password'.$i]));
-            if(mysqli_num_rows(mysqli_query($con,"SELECT * FROM users WHERE pseudo='$pseudo'and password='".md5($password)."'"))==1){
-                mysqli_query($con,"UPDATE teams SET player".$i." = '".$pseudo."'WHERE id=$team");
+            $pseudo = $conn->real_escape_string(stripslashes($_REQUEST['pseudo'.$i]));
+            $password = $conn->real_escape_string(stripslashes($_REQUEST['password'.$i]));
+            if(mysqli_num_rows($conn->query("SELECT * FROM users WHERE pseudo='$pseudo'and password='".md5($password)."'"))==1){
+                $conn->query("UPDATE teams SET player".$i." = '".$pseudo."'WHERE id=$team");
                 echo "<div class=\"pseudo\">$pseudo</div>";
             }
             else
@@ -43,23 +43,33 @@
         <form class="form" action="" method="post" name="login">
             <br><input type="text" name="pseudo1" placeholder="Pseudo Joueur 1">
             <input type="password" name="password1" placeholder="Password">
-            <div id="player2" hidden>
+            </form>
+        
+        <div id="player2" hidden>
+            <form action="" method="post" name="player2">
                 <br><input type="text" name="pseudo2" placeholder="Pseudo Joueur 2">
                 <input type="password" name="password2" placeholder="Password">
-            </div>
-            <div id="player3" hidden>
+                <button type="submit">Valider</button>
+            </form>
+        </div>
+        <div id="player3" hidden>
+            <form action="" method="post" name="player2">
                 <br><input type="text" name="pseudo3" placeholder="Pseudo Joueur 3">
                 <input type="password" name="password3" placeholder="Password">
-            </div>
-            <div id="player4" hidden>
+                <button type="submit">Valider</button>                
+            </form>
+        </div>
+        <div id="player4" hidden>
+            <form action="" method="post" name="player2">
                 <br><input type="text" name="pseudo4" placeholder="Pseudo Joueur 4">
                 <input type="password" name="password4" placeholder="Password">
-            </div>
+                <button type="submit">Valider</button>
+            </form>
+        </div>
             <br><br>
-            <button id="add_player">Ajouter un joueur</button>
+            <button type="button" id="add_player">Ajouter un joueur</button>
             <button type="submit">Démarrer la partie</button>
             
-        </form>
 <?php
     }
 ?>

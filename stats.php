@@ -1,4 +1,5 @@
 <?php
+    require('db.php');
     include("auth.php");
 ?>
 
@@ -14,28 +15,34 @@
 
 <body>
 
+<?php
+    $pseudo = $_SESSION['pseudo'];
+
+    $games=$conn->query("SELECT g.team, g.times FROM teams t, games g
+                        WHERE g.team IN
+                            (SELECT id FROM teams
+                            WHERE player1='$pseudo'
+                                OR player2='$pseudo'
+                                OR player3='$pseudo'
+                                OR player4='$pseudo')");
+?>
+
     <div class="blink">
         <h1>ESCAPE THE NARCOS</h1>
     </div>
+    <p class="menu">Statistiques du joueur <?php echo $pseudo; ?> -
+    <a href="index.php">Retour au menu</a> -
+    <a href="logout.php">Déconnexion</a></p>
 
     <div class="frame">
 
         <h2>Statistiques du joueur</h2>
 
-        <div class="row">
-
-            <div class="col-6">
-                <h2 id="create">Créer une partie</h2>
-            </div>
-
-            <div class="col-6">
-                <h2 class="selected" id="join">Rejoindre une partie</h2>
-            </div>
-
-        </div>
-
-        <p><a href="dashboard.php">Dashboard</a></p>
-
+<?php
+        while ($game = $games->fetch_assoc()) {
+			echo $game['team'].' ';
+		}
+?>
         
     </div>
     

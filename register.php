@@ -13,10 +13,9 @@
     <?php
     require('db.php');
     if (isset($_REQUEST['pseudo'])){
-        $pseudo = mysqli_real_escape_string($con,stripslashes($_REQUEST['pseudo']));
-        $password = mysqli_real_escape_string($con,stripslashes($_REQUEST['password']));
-        $result = mysqli_query($con,"INSERT INTO users VALUES ('$pseudo', '".md5($password)."')");
-        if($result){
+        $pseudo = $conn->real_escape_string(stripslashes($_REQUEST['pseudo']));
+        $password = $conn->real_escape_string(stripslashes($_REQUEST['password']));
+        if($conn->query("INSERT INTO users VALUES ('$pseudo', '".md5($password)."')")){
             echo "
             <div class=\"blink\">
                 <h1>ESCAPE THE NARCOS</h1>

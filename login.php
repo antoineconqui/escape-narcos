@@ -1,3 +1,7 @@
+<?php
+    require('db.php');
+?>
+
 <html>
 
 <head>
@@ -14,11 +18,9 @@
         require('db.php');
         session_start();
         if (isset($_POST['pseudo'])){
-            $pseudo = mysqli_real_escape_string($con,stripslashes($_REQUEST['pseudo']));
-            $password = mysqli_real_escape_string($con,stripslashes($_REQUEST['password']));
-            $result = mysqli_query($con,"SELECT * FROM users WHERE pseudo='$pseudo'and password='".md5($password)."'");
-            $rows = mysqli_num_rows($result);
-                if($rows==1){
+            $pseudo = $conn->real_escape_string(stripslashes($_REQUEST['pseudo']));
+            $password = $conn->real_escape_string(stripslashes($_REQUEST['password']));
+                if(mysqli_num_rows($conn->query("SELECT * FROM users WHERE pseudo='$pseudo'and password='".md5($password)."'"))==1){
                     $_SESSION['pseudo'] = $pseudo;
                     header("Location: index.php");
                 }

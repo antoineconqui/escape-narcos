@@ -1,8 +1,5 @@
 <?php
     require('db.php');
-    mysqli_query($con,"CREATE TABLE IF NOT EXISTS users (pseudo varchar(50) PRIMARY KEY,password varchar(50))");
-    mysqli_query($con,"CREATE TABLE IF NOT EXISTS teams (id INT PRIMARY KEY, player1 varchar(50), player2 varchar(50), player3 varchar(50), player4 varchar(50))");
-    // mysqli_query($con,"CREATE TABLE IF NOT EXISTS games (pseudo varchar(50) PRIMARY KEY,password varchar(50))");
     include("auth.php");
 ?>
 
@@ -65,7 +62,6 @@
             </a>
         </div>
 
-        
         <div id="zoomBackground" hidden></div>
 
         <div class="zoom" id="launch_game" hidden>
