@@ -39,7 +39,7 @@ body{
 
 .frame{
     text-align: center;
-    width: 60%;
+    width: 1000px;
     border: 1px #d63031 solid;
     border-radius: 20px;
     margin: auto;
@@ -59,24 +59,27 @@ body{
     border: 1px #dfe6e9 solid;
     border-radius: 5px;
     color: white;
+    cursor: pointer;
 }
 
 #zoomBackground{
-    position: absolute;
+    position: fixed;
+    float: left;
     top:0;
     left:0;
     width: 100%;
     height: 100%;
     background: #2d3436;
     opacity: 0.5;
+    z-index: 10;
 }
 
 .zoom{
-    position: absolute; 
-    top: 30%;
-    left: 30%;
-    width:40%;
-    height:40%;
+    position: fixed; 
+    top: 20%;
+    left: 20%;
+    width: 60%;
+    height: 60%;
     padding: 30px;
     background: #2d3436;
     border: 1px #d63031 solid;
@@ -84,6 +87,7 @@ body{
     color: #d63031;
     text-align: center;
     font-size: 1.5em;
+    z-index: 11;
 }
 
 
@@ -101,11 +105,6 @@ body{
 
 .form{
     margin: auto
-}
-
-
-row{
-    margin: auto;
 }
 
 h1{
@@ -173,19 +172,23 @@ input{
 /* UTILITAIRES */
 
     .titre{
+        text-align: center;
         animation: blink 2s linear infinite;
         padding-top: 50%;
         transform: translateY(-50%);
-        font-size: 3em;
-    }
+    }   
 
+    .titre h2{
+        font-size: 4em;
+    }
+    
     .indication{
+        text-align: center;
         animation: semiblink 3s linear infinite;
         padding-top: 50%;
         transform: translateY(-50%);
-        font-size: 1.5em;
     }
-
+    
     #enigme{
         position: absolute;
         top: 10px;

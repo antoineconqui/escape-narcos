@@ -1,6 +1,6 @@
 <?php
     require('db.php');
-    include("auth.php");
+    include 'auth.php';
 ?>
 
 <html>
@@ -39,8 +39,8 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="media/escape-pablo-house.jpg" class="image" alt="Escape Pablo House">
-                    <div class="carousel-caption d-none d-md-block caption">
-                    <a id="game-pablo-house"><h3>Escape from Pablo's House</h3></a>
+                    <div class="carousel-caption d-none d-md-block caption" id="game-pablo-house">
+                    <h3>Escape from Pablo's House</h3>
                         <p>Pablo Escabar vous a enfermé dans sa maison. En tant qu'agent de la DEA, vous devez vite vous en échapper !</p>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
 
         <div class="zoom" id="launch_game" hidden>
             
-            <?php include 'launch_game.php'; ?>
+            <?php include("launch_game.php"); ?>
 
         </div>
 

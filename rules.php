@@ -29,10 +29,6 @@
 
     <a href="game.php"><button class="next">Continuer</button></a>
 
-    <script>
-        document.documentElement.requestFullscreen();        
-    </script>
-
 </body>
 
 </html>

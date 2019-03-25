@@ -11,7 +11,7 @@
 <div id="lumiere" hidden>
     <div id="zoomBackground" hidden></div>
     <button id="verrou"></button>
-    <div class="zoom" hidden>
+    <div class="zoom" id="verrouZoom" hidden>
         <form action="verrou.php" method="get">
             <h4>Verrou</h4>
             <br><br><br>

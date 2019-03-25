@@ -1,6 +1,5 @@
 let game=0;
-let player=1;
-let players=[]
+let player = 1;
 
 document.getElementById("game-pablo-house").addEventListener("click", function(){
     game=0;

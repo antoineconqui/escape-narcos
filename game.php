@@ -15,6 +15,9 @@
 
 <body>
 
+    <script>
+    </script>
+
     <div id="room1">
         <?php include 'room1.php'; ?>
     </div>
@@ -33,6 +36,10 @@
     </span>
 
     <script src="game.js"></script>
+
+    <script>
+        document.documentElement.requestFullscreen();
+    </script>
 
 </body>
 
