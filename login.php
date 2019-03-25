@@ -10,6 +10,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <title>Escape The Narcos</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="media/icon.ico">
 </head>
 
 <body>
