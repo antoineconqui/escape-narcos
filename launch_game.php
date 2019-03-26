@@ -11,10 +11,10 @@
         <?php
     }
 
-    function ValidUser($n,$conn){
-        $pseudo = $conn->real_escape_string(stripslashes($_REQUEST['pseudo'.$n]));
-        $password = $conn->real_escape_string(stripslashes($_REQUEST['password'.$n]));
-        return mysqli_num_rows($conn->query("SELECT * FROM users WHERE pseudo='$pseudo'and password='".md5($password)."'"))==1;
+    function ValidUser($n,$db){
+        $pseudo = $db->real_escape_string(stripslashes($_REQUEST['pseudo'.$n]));
+        $password = $db->real_escape_string(stripslashes($_REQUEST['password'.$n]));
+        return mysqli_num_rows($db->query("SELECT * FROM users WHERE pseudo='$pseudo'and password='".md5($password)."'"))==1;
     }
 
     if (isset($_POST['pseudo1'])){
@@ -27,11 +27,11 @@
         $problem = 0;
         $players = 1;
         $str = "<h3>Les joueurs sont :</h3><br><div class=\"pseudo\">".$_SESSION['pseudo']."</div>";
-        $query = "INSERT INTO teams VALUES ('','";
+        $query = "INSERT INTO teams VALUES ('','".$_SESSION['pseudo']."','";
 
-        for ($i=2; $i < 5; $i++) { 
+        for ($i=2; $i < 4; $i++) { 
             if (!empty($_POST['pseudo'.$i])){
-                if (ValidUser($i,$conn)){
+                if (ValidUser($i,$db)){
                     $query.=$_POST['pseudo'.$i]."','";
                     $str.= "<div class=\"pseudo\">".$_POST['pseudo'.$i]."</div>";
                 }
@@ -43,8 +43,7 @@
         }
 
         if($problem==0){
-            echo "<p>".$query."')"."</p>";
-            $conn->query($query."')");
+            $db->query($query."',1)");
             echo $str;
             echo "<br><p><a href=\"rules.php\">Lancer la partie</a></p>";
         }

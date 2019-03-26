@@ -13,9 +13,10 @@
     <?php
     require('db.php');
     if (isset($_REQUEST['pseudo'])){
-        $pseudo = $conn->real_escape_string(stripslashes($_REQUEST['pseudo']));
-        $password = $conn->real_escape_string(stripslashes($_REQUEST['password']));
-        if($conn->query("INSERT INTO users VALUES ('$pseudo', '".md5($password)."')")){
+        $pseudo = $db->real_escape_string(stripslashes($_REQUEST['pseudo']));
+        $password = $db->real_escape_string(stripslashes($_REQUEST['password']));
+        $gmpass = $db->real_escape_string(stripslashes($_REQUEST['gmpass']));
+        if($db->query("INSERT INTO users VALUES ('$pseudo', '".md5($password)."', '$gmpass')")){
             echo "
             <div class=\"blink\">
                 <h1>ESCAPE THE NARCOS</h1>
@@ -60,6 +61,7 @@
             <form class="form" action="" method="post" name="register">
                 <input type="text" name="pseudo" placeholder="Pseudo" required>
                 <br><br><input type="password" name="password" placeholder="Password" required>
+                <br><br><input type="text" name="gmpass" placeholder="GameMaster Pass">
                 <br><br><input name="submit" type="submit" value="Envoyer">
             </form>
         </div>

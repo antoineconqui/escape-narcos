@@ -15,8 +15,7 @@
 
 <body>
 
-    <script>
-    </script>
+    <?php
 
     <div id="room1">
         <?php include 'room1.php'; ?>
@@ -29,7 +28,7 @@
     <span id="timer" hidden></span>
 
     <span id="chat" hidden>
-        <form action="chat.php">
+        <form method="post" action="">
             <input id="message" type="text" name="message" placeholder=" Chatter avec le GameMaster">
             <button type="submit">Envoyer</button>
         </form>

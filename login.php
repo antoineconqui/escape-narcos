@@ -19,23 +19,25 @@
         require('db.php');
         session_start();
         if (isset($_POST['pseudo'])){
-            $pseudo = $conn->real_escape_string(stripslashes($_REQUEST['pseudo']));
-            $password = $conn->real_escape_string(stripslashes($_REQUEST['password']));
-                if(mysqli_num_rows($conn->query("SELECT * FROM users WHERE pseudo='$pseudo'and password='".md5($password)."'"))==1){
-                    $_SESSION['pseudo'] = $pseudo;
-                    header("Location: index.php");
-                }
-                else{
-                    echo "
-                    <div class=\"blink\">
-                        <h1>ESCAPE THE NARCOS</h1>
-                    </div>
+            $pseudo = $db->real_escape_string(stripslashes($_REQUEST['pseudo']));
+            $password = $db->real_escape_string(stripslashes($_REQUEST['password']));
+            $result = $db->query("SELECT * FROM users WHERE pseudo='$pseudo'and password='".md5($password)."'");
+            if(mysqli_num_rows($result)==1){
+                $_SESSION['pseudo'] = $pseudo;
+                $_SESSION['gmpass'] = $result->fetch_assoc()['gmpass'];
+                header("Location: index.php");
+            }
+            else{
+                echo "
+                <div class=\"blink\">
+                    <h1>ESCAPE THE NARCOS</h1>
+                </div>
 
-                    <div class=\"frame\">
-                        <h3>Pseudo / Mot de passe incorrect.</h3>
-                        <br><a href='login.php'>Essayer à nouveau</a>
-                    </div>";
-                }
+                <div class=\"frame\">
+                    <h3>Pseudo / Mot de passe incorrect.</h3>
+                    <br><a href='login.php'>Essayer à nouveau</a>
+                </div>";
+            }
         }
         else{
     ?>

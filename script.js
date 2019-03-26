@@ -23,5 +23,4 @@ document.getElementById("add_player").addEventListener("click", function(){
     document.getElementById("player"+player).hidden = false;
     if (player==4)
         document.getElementById("add_player").hidden = true;
-
 });

@@ -153,6 +153,53 @@ input{
     color: #dfe6e9; 
 }
 
+/* GAMEMASTER */
+
+.message-box{
+    border: 1px solid #d63031;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.message-header{
+    text-align: center;
+    border-bottom: 1px solid #d63031;
+    width: 90%;
+    padding: 10px;
+    margin: auto;
+}
+
+.message-header h4{
+    color : #0984e3;
+}
+
+.message-text{
+    text-align: left;
+    padding: 10px;
+    width: 80%;
+    margin: auto;
+}
+
+.message-text .b{
+    text-decoration: underline;
+}
+
+.message-text form{
+    text-align: right;
+}
+
+.message-text input{
+    width: 60%;
+    margin: 10px;
+}
+
+.message-text button{
+    width: 100px;
+    border-radius: 5px;
+}
+
+
+
 /* RULES */
 
 .rules{

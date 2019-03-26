@@ -18,7 +18,7 @@
 <?php
     $pseudo = $_SESSION['pseudo'];
 
-    $games=$conn->query("SELECT g.team, g.times FROM teams t, games g
+    $games=$db->query("SELECT g.team, g.times FROM teams t, games g
                         WHERE g.team IN
                             (SELECT id FROM teams
                             WHERE player1='$pseudo'
@@ -30,7 +30,7 @@
     <div class="blink">
         <h1>ESCAPE THE NARCOS</h1>
     </div>
-    <p class="menu">Statistiques du joueur <?php echo $pseudo; ?> -
+    <p class="menu">Statistiques : <?php echo $pseudo; ?> -
     <a href="index.php">Retour au menu</a> -
     <a href="logout.php">Déconnexion</a></p>
 

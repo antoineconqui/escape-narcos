@@ -24,6 +24,11 @@
     </div>
     <p class="menu">Bienvenue <?php echo $_SESSION['pseudo']; ?>, chez "Escape The Narcos" -
     <a href="stats.php">Statistiques du joueur</a> -
+    <?php 
+        if($_SESSION['gmpass']==$gmpassvalue)
+            echo "<a href=\"gamemaster.php\">Game Master Page</a> - ";
+    ?>
+    
     <a href="logout.php">Déconnexion</a></p>
 
     <div class="frame">
