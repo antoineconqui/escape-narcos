@@ -1,7 +1,7 @@
 <?php
     include 'db.php';
-    $message = $_POST['message'];
     $date = date();
-    $team = $_SESSION['team'];
+    $team = $_POST['team'];
+    $message = $_POST['message'];
     $db -> query("INSERT INTO messages VALUES ('','$date',0,$team,'$message','')");
 ?>

@@ -1,6 +1,6 @@
 <?php
-    require('db.php');
-    include("auth.php");
+    require 'db.php';
+    include 'auth.php';
 ?>
 
 <html>
@@ -50,24 +50,27 @@
             if($answer!="")
                 $db -> query("UPDATE messages SET answer = '$answer' WHERE id = $id");
         }
-
-        while ($team = $teams->fetch_assoc()) {
-            echo "<div class='message-box'>
-                    <div class='message-header'>
-                        <h4>Equipe : ".$team['player1'];
-                        for ($i=2; $i < 5; $i++)
-                            if ($team['player'.$i]!=null)
-                                echo " - ".$team['player'.$i];
-                echo "</h4>
-                    </div>
-                    <div class='message-text' id='team".$team['id']."'>
-
-                    </div>
-                </div>";
+        if(!$teams){
+            echo "<h3>Aucune équipe n'est en train de jouer ...</h3>";
+        }
+        else{
+            while ($team = $teams->fetch_assoc()) {
+                echo "<div class='message-box'>
+                        <div class='message-header'>
+                            <h4>Equipe : ".$team['player1'];
+                            for ($i=2; $i < 5; $i++)
+                                if ($team['player'.$i]!=null)
+                                    echo " - ".$team['player'.$i];
+                    echo "</h4>
+                        </div>
+                        <div class='message-text' id='team".$team['id']."'>
+    
+                        </div>
+                    </div>";
+            }
         }
 
         if(!$messages){
-            echo "<h3>Aucune équipe n'est en train de jouer ...</h3>";
         }
         else{
             while ($message = $messages->fetch_assoc()) {

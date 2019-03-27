@@ -2,16 +2,16 @@
     <div class="titre" id="titre1">
         <h2>Pièce Numéro 1 : Le Cachot</h2>
     </div>
-    <div class="indication" id="indication1" hidden>
+    <div class="indication" id="indication1" style="display:none;">
         <h2>Enigme 1 : Sortez de l'obscurité</h2>
     </div>
-    <button id="interrupteur" hidden></button>
+    <button id="interrupteur" style="display:none;"></button>
 </div>
 
-<div id="lumiere" hidden>
-    <div id="zoomBackground" hidden></div>
+<div id="lumiere" style="display:none;">
+    <div id="zoomBackground" style="display:none;"></div>
     <button id="verrou"></button>
-    <div class="zoom" id="verrouZoom" hidden>
+    <div class="zoom" id="verrouZoom" style="display:none;">
         <form action="verrou.php" method="get">
             <h4>Verrou</h4>
             <br><br><br>

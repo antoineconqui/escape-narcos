@@ -1,26 +1,27 @@
 let game=0;
 let player = 1;
 
-document.getElementById("game-pablo-house").addEventListener("click", function(){
+
+$("#game-pablo-house").click(function(){
     game=0;
-    document.getElementById("zoomBackground").hidden = false;
-    document.getElementById("launch_game").hidden = false;
+    $("#zoomBackground").show();
+    $("#launch_game").show();
 });
 
-document.getElementById("game-catedral").addEventListener("click", function(){
+$("#game-catedral").click(function(){
     game=1;
-    document.getElementById("zoomBackground").hidden = false;
-    document.getElementById("launch_game").hidden = false;
+    $("#zoomBackground").show();
+    $("#launch_game").show();
 });
 
-document.getElementById("zoomBackground").addEventListener("click", function(){
-    document.getElementById("zoomBackground").hidden = true;
-    document.getElementById("launch_game").hidden = true;
+$("#zoomBackground").click(function(){
+    $("#zoomBackground").hide();
+    $("#launch_game").hide();
 });
 
-document.getElementById("add_player").addEventListener("click", function(){
+$("#add_player").click(function(){
     player++;
-    document.getElementById("player"+player).hidden = false;
+    $("#player"+player).show();
     if (player==4)
-        document.getElementById("add_player").hidden = true;
+        $("#add_player").hide();
 });

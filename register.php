@@ -16,7 +16,7 @@
         $pseudo = $db->real_escape_string(stripslashes($_REQUEST['pseudo']));
         $password = $db->real_escape_string(stripslashes($_REQUEST['password']));
         $gmpass = $db->real_escape_string(stripslashes($_REQUEST['gmpass']));
-        if($db->query("INSERT INTO users VALUES ('$pseudo', '".md5($password)."', '$gmpass')")){
+        if($db->query("INSERT INTO users VALUES ('$pseudo', '".md5($password)."', '".md5($gmpass)."')")){
             echo "
             <div class=\"blink\">
                 <h1>ESCAPE THE NARCOS</h1>

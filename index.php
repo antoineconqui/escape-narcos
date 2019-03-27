@@ -1,5 +1,5 @@
 <?php
-    require('db.php');
+    require 'db.php';
     include 'auth.php';
 ?>
 
@@ -25,7 +25,7 @@
     <p class="menu">Bienvenue <?php echo $_SESSION['pseudo']; ?>, chez "Escape The Narcos" -
     <a href="stats.php">Statistiques du joueur</a> -
     <?php 
-        if($_SESSION['gmpass']==$gmpassvalue)
+        if($_SESSION['gmpass']==md5($gmpassvalue))
             echo "<a href=\"gamemaster.php\">Game Master Page</a> - ";
     ?>
     
@@ -68,9 +68,9 @@
             </a>
         </div>
 
-        <div id="zoomBackground" hidden></div>
+        <div id="zoomBackground" style="display:none;"></div>
 
-        <div class="zoom" id="launch_game" hidden>
+        <div class="zoom" id="launch_game" style="display:none;">
             
             <?php include("launch_game.php"); ?>
 

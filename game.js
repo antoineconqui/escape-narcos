@@ -11,7 +11,7 @@ let room = 1;
 let enigme = 0;
 let tenigme = 0;
 let timer = setInterval(function(){
-    document.getElementById("indice").hidden = false;
+    $("#indice").show();
 },time_indices[enigme]*1000);
 
 // FONCTIONS
@@ -39,63 +39,57 @@ function GiveIndice() {
 function NextEnigme(){
     clearInterval(timer);
     times[enigme]=Date.now()-times[enigme-1];
-    document.getElementById("indice").hidden = true;
+    $("#indice").hide();
 
     enigme++;
     timer = setInterval(function(){
-        document.getElementById("indice").hidden = false;
+        $("#indice").show();
     }, time_indices[enigme]*1000);
-    document.getElementById("enigme").textContent = "Enigme n°"+(enigme+1);
+    $("#enigme").text("Enigme n°"+(enigme+1));
 }
 
 // ACTIONS
-
-document.getElementById("indice").addEventListener("click", function(){
-    GiveIndice();
+$("#indice").click(function(){
+    GiveIndice()
 });
 
-document.getElementById("interrupteur").addEventListener("click", function(){
-    document.getElementById("obscurite").hidden = true;
-    document.getElementById("lumiere").hidden = false;
+$("#interrupteur").click(function(){
+    $("#obscurite").hide();
+    $("#lumiere").show();
     NextEnigme();
 });
-
-document.getElementById("zoomBackground").addEventListener("click", function(){
-    document.getElementById("zoomBackground").hidden = true;
-    document.getElementById("verrouZoom").hidden = true;
-    document.getElementById("verrou").hidden = false;
+$("#zoomBackground").click(function(){
+    $("#zoomBackground").hide();
+    $("#verrouZoom").hide();
+    $("#verrou").show();
 });
 
-document.getElementById("verrou").addEventListener("click", function(){
-    document.getElementById("zoomBackground").hidden = false;
-    document.getElementById("verrouZoom").hidden = false;
-    document.getElementById("verrou").hidden = true;
+$("#verrou").click(function(){
+    $("#zoomBackground").show();
+    $("#verrouZoom").show();
+    $("#verrou").hide();
 });
 
 $("#message-button").click(function() {
     $.ajax({
-           type: "POST",
-           url: "message.php",
-           data: $("#message-form").serialize(),
-           success: function(data)
-           {
-           }
-         });
+        url: "message.php",
+        type: "POST",
+        data: $("#message-form").serialize()
+    });
     return false;
 });
 
 // TIMERS
 
 setTimeout(function(){
-    document.getElementById("titre1").hidden = true;
-    document.getElementById("indication1").hidden = false;
-    document.getElementById("interrupteur").hidden = false;
-    document.getElementById("enigme").hidden = false;
-    document.getElementById("timer").hidden = false;
-    document.getElementById("chat").hidden = false;
+    $("#titre1").hide();
+    $("#indication1").show();
+    $("#interrupteur").show();
+    $("#enigme").show();
+    $("#timer").show();
+    $("#chat").show();
 }, 3000);
 
 window.setInterval(function(){
-    document.getElementById("timer").textContent = ReadTime(Date.now()-t0);
-
+    $("#timer").text(ReadTime(Date.now()-t0));
 },1000);

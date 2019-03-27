@@ -5,8 +5,8 @@
         unset($_POST['pseudo1'],$_POST['try_again']);
         ?>
         <script>
-            document.getElementById("zoomBackground").hidden = false;
-            document.getElementById("launch_game").hidden = false;
+            $("#zoomBackground").show();
+            $("#launch_game").show();
         </script>
         <?php
     }
@@ -20,8 +20,8 @@
     if (isset($_POST['pseudo1'])){
         ?>
         <script>
-            document.getElementById("zoomBackground").hidden = false;
-            document.getElementById("launch_game").hidden = false;
+            $("#zoomBackground").show();
+            $("#launch_game").show();
         </script>
         <?php
         $problem = 0;
@@ -44,7 +44,7 @@
 
         if($problem==0){
             $db->query($query."',1)");
-            $query = $db->query("SELECT id FROM teams ORDER BY desc LIMIT 1");
+            $query = $db->query("SELECT id FROM teams ORDER BY id DESC LIMIT 1");
             $_SESSION['team']=$query->fetch_assoc()['id'];
             echo $str;
             echo "<br><p><a href=\"rules.php\">Lancer la partie</a></p>";
@@ -60,18 +60,18 @@
 
     }
     else{
-?>
+        ?>
         <form class="form" action="" method="post">
             <input type="text" name="pseudo1" placeholder="<?php echo $_SESSION['pseudo']; ?>">
-            <div id="player2" hidden>
+            <div id="player2" style="display:none;">
                 <input type="text" name="pseudo2" placeholder="Pseudo Joueur 2">
                 <input type="password" name="password2" placeholder="Password">
             </div>
-            <div id="player3" hidden>
+            <div id="player3" style="display:none;">
                 <input type="text" name="pseudo3" placeholder="Pseudo Joueur 3">
                 <input type="password" name="password3" placeholder="Password">
             </div>
-            <div id="player4" hidden>
+            <div id="player4" style="display:none;">
                 <input type="text" name="pseudo4" placeholder="Pseudo Joueur 4">
                 <input type="password" name="password4" placeholder="Password">
             </div>
