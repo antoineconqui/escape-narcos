@@ -1,6 +1,8 @@
 <?php
     require 'db.php';
     include 'auth.php';
+
+    $games = $db->query("SELECT * FROM games");
 ?>
 
 <html>
@@ -12,7 +14,8 @@
     <title>Escape The Narcos</title>
     <link rel="stylesheet" href="style.css"/>
     <link rel="icon" type="image/png" href="media/icon.ico">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
@@ -28,7 +31,6 @@
         if($_SESSION['gmpass']==md5($gmpassvalue))
             echo "<a href=\"gamemaster.php\">Game Master Page</a> - ";
     ?>
-    
     <a href="logout.php">Déconnexion</a></p>
 
     <div class="frame">
@@ -36,27 +38,40 @@
         <h2>Découvrez tous nos Escape-Game !</h2>
         
         <br>  
-            
+
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            </ol>
+
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="media/escape-pablo-house.jpg" class="image" alt="Escape Pablo House">
-                    <div class="carousel-caption d-none d-md-block caption" id="game-pablo-house">
-                    <h3>Escape from Pablo's House</h3>
-                        <p>Pablo Escabar vous a enfermé dans sa maison. En tant qu'agent de la DEA, vous devez vite vous en échapper !</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="media/escape-la-catedral.jpg" class="image" alt="Escape La Catedral">
-                    <div class="carousel-caption d-none d-md-block caption">
-                        <a id="game-catedral"><h3>Escape from La Catedral</h3></a>
-                        <p>Aidez Pablo Escobar à s'échapper de sa célèbre prison "La Catedral" !</p>
-                    </div>
-                </div>
+
+            <?php
+            if(!$games){
+            }
+            else{
+                $active = true;
+                while ($game = $games->fetch_assoc()) {
+                    echo "  <div class='carousel-item ";
+                    if($active)
+                        echo "active";
+                    echo " '>
+                                <img src='media/".stripslashes($game['name']).".jpg' class='image'>
+                                <div class='carousel-caption d-none d-md-block caption' id='".stripslashes($game['name'])."'>
+                                    <h3>".stripslashes($game['title'])."</h3>
+                                    <p>".stripslashes($game['text'])."</p>
+                                </div>
+                            </div>";
+                    ?>
+                    <script>
+                        $("#<?php echo $game['name'] ?>").click(function(){
+                            $.cookie('game',<?php echo $game['id'] ?>);
+                            $("#zoomBackground").show();
+                            $("#launch_game").show();
+                        });
+                    </script>
+                    <?php
+                    $active = false;
+                }
+            }
+            ?>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>

@@ -7,12 +7,13 @@ let indices = [
     "Trouvez un moyen d'ouvrir la porte."   
 ];
 let times = [];
-let room = 1;
-let enigme = 0;
+$.cookie("room", 0);
+$.cookie("enigme", 0);
+$.cookie("tenigme", 0);
 let tenigme = 0;
-let timer = setInterval(function(){
+let timer = setTimeout(function(){
     $("#indice").show();
-},time_indices[enigme]*1000);
+},time_indices[$.cookie("enigme")]*1000);
 
 // FONCTIONS
 
@@ -42,7 +43,7 @@ function NextEnigme(){
     $("#indice").hide();
 
     enigme++;
-    timer = setInterval(function(){
+    timer = setTimeout(function(){
         $("#indice").show();
     }, time_indices[enigme]*1000);
     $("#enigme").text("Enigme n°"+(enigme+1));
@@ -71,11 +72,15 @@ $("#verrou").click(function(){
 });
 
 $("#message-button").click(function() {
+    // console.log('ok');
     $.ajax({
         url: "message.php",
         type: "POST",
         data: $("#message-form").serialize()
     });
+    // $("#message-text").val("");
+    // $("#answer").text("Votre question a bien été envoyée !");
+
     return false;
 });
 
@@ -90,6 +95,6 @@ setTimeout(function(){
     $("#chat").show();
 }, 3000);
 
-window.setInterval(function(){
+setInterval(function(){
     $("#timer").text(ReadTime(Date.now()-t0));
 },1000);

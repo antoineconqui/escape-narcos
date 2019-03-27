@@ -1,21 +1,7 @@
 <?php
     require 'db.php';
     include 'auth.php';
-?>
-
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <title>Escape The Narcos</title>
-    <link rel="stylesheet" href="style.css" />
-</head>
-
-<body>
-
-<?php
+    
     $pseudo = $_SESSION['pseudo'];
 
     $teams = $db->query("SELECT * FROM teams WHERE playing=1");
@@ -32,6 +18,18 @@
     let button;
     let submit;
 </script>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <title>Escape The Narcos</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
 
     <div class="blink">
         <h1>ESCAPE THE NARCOS</h1>

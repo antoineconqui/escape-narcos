@@ -101,7 +101,9 @@ body{
 
 
 
-
+#launch{
+    cursor: pointer;
+}
 
 .form{
     margin: auto
@@ -284,6 +286,7 @@ input{
 
     #chat input{
         border: 0;
+        width: 220px;
     }
 
     #chat button{
@@ -291,10 +294,6 @@ input{
         background: #00000000;
         color: #dfe6e9;
         border-radius: 5px;
-    }
-
-    #message{
-        width: 220px;
     }
     
 /* ROOMS */

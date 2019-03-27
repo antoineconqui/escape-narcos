@@ -27,27 +27,40 @@
         $problem = 0;
         $players = 1;
         $str = "<h3>Les joueurs sont :</h3><br><div class=\"pseudo\">".$_SESSION['pseudo']."</div>";
-        $query = "INSERT INTO teams VALUES ('','".$_SESSION['pseudo']."','";
+        $query1 = "\"query=INSERT INTO teams VALUES ('',\"";
+        $query2 = "\",'".$_SESSION['pseudo']."','";
 
         for ($i=2; $i < 4; $i++) { 
             if (!empty($_POST['pseudo'.$i])){
                 if (ValidUser($i,$db)){
-                    $query.=$_POST['pseudo'.$i]."','";
+                    $query2.=$_POST['pseudo'.$i]."','";
                     $str.= "<div class=\"pseudo\">".$_POST['pseudo'.$i]."</div>";
                 }
                 else
                     $problem+=$i;
             }
             else
-                $query.="','";
+                $query2.="','";
         }
 
         if($problem==0){
-            $db->query($query."',1)");
-            $query = $db->query("SELECT id FROM teams ORDER BY id DESC LIMIT 1");
-            $_SESSION['team']=$query->fetch_assoc()['id'];
-            echo $str;
-            echo "<br><p><a href=\"rules.php\">Lancer la partie</a></p>";
+            $query2.="',1)\"";
+            echo $str."<br><button id='launch'>Lancer la partie</button>";
+            $teams = $db->query("SELECT id FROM teams ORDER BY id DESC LIMIT 1");
+            $_SESSION['team']=$teams->fetch_assoc()['id'];
+            
+            ?>
+            <script>
+                $("#launch").click(function(){
+                    $.ajax({
+                        url: "add_team.php",
+                        type: "POST",
+                        data: <?php echo $query1; ?>+$.cookie('game')+<?php echo $query2; ?>
+                    });
+                    window.location.href = "game.php";
+                });
+            </script>
+            <?php
         }
         if($problem==2 || $problem==5 || $problem==6 || $problem==9)
             echo "<br><p>Pseudo/Mot de passe du joueur 2 incorrect.</p>";
