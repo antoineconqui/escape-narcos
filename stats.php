@@ -39,9 +39,14 @@
         <h2>Statistiques du joueur</h2>
 
 <?php
-        while ($game = $games->fetch_assoc()) {
-			echo $game['team'].' ';
-		}
+        if(!$games){
+            echo "<h4>Vous n'avez pas encore fait de parties ...</h4>";
+        }
+        else{
+            while ($game = $games->fetch_assoc()) {
+			    echo $game['team'].' ';
+            }
+        }
 ?>
         
     </div>

@@ -44,6 +44,8 @@
 
         if($problem==0){
             $db->query($query."',1)");
+            $query = $db->query("SELECT id FROM teams ORDER BY desc LIMIT 1");
+            $_SESSION['team']=$query->fetch_assoc()['id'];
             echo $str;
             echo "<br><p><a href=\"rules.php\">Lancer la partie</a></p>";
         }

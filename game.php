@@ -16,6 +16,8 @@
 <body>
 
     <?php
+        if (isset($POST))
+    ?>
 
     <div id="room1">
         <?php include 'room1.php'; ?>
@@ -28,9 +30,9 @@
     <span id="timer" hidden></span>
 
     <span id="chat" hidden>
-        <form method="post" action="">
+        <form method="post" action="" id="message-form">
             <input id="message" type="text" name="message" placeholder=" Chatter avec le GameMaster">
-            <button type="submit">Envoyer</button>
+            <button type="submit" id="message-button">Envoyer</button>
         </form>
     </span>
 

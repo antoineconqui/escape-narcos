@@ -72,6 +72,18 @@ document.getElementById("verrou").addEventListener("click", function(){
     document.getElementById("verrou").hidden = true;
 });
 
+$("#message-button").click(function() {
+    $.ajax({
+           type: "POST",
+           url: "message.php",
+           data: $("#message-form").serialize(),
+           success: function(data)
+           {
+           }
+         });
+    return false;
+});
+
 // TIMERS
 
 setTimeout(function(){
