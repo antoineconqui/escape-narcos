@@ -4,20 +4,7 @@
     
     $pseudo = $_SESSION['pseudo'];
 
-    $teams = $db->query("SELECT * FROM teams WHERE playing=1");
-    $messages = $db->query("SELECT * FROM messages WHERE team IN (SELECT id FROM teams WHERE playing=1)");
 ?>
-
-<script>
-    let team;
-    let container;
-    let message;
-    let answer;
-    let form;
-    let input;
-    let button;
-    let submit;
-</script>
 
 <html>
 
@@ -45,86 +32,14 @@
 
         <h2>PARTIES EN COURS - <a href="gamemaster.php">ACTUALISER</a></h2>
 
-        <?php
-        foreach($_POST as $id => $answer){
-            if($answer!="")
-                $db -> query("UPDATE messages SET answer = '$answer' WHERE id = $id");
-        }
+        <h3 id="nb_team"></h3>
 
-        if(!$teams){
-            echo "<h3>Aucune équipe n'est en train de jouer ...</h3>";
-        }
-        else{
-            while ($team = $teams->fetch_assoc()) {
-                echo "<div class='message-box'>
-                        <div class='message-header'>
-                            <h4>Equipe : ".$team['player1'];
-                            for ($i=2; $i < 5; $i++)
-                                if ($team['player'.$i]!=null)
-                                    echo " - ".$team['player'.$i];
-                    echo "</h4>
-                        </div>
-                        <div class='message-text' id='team".$team['id']."'>
-    
-                        </div>
-                    </div>";
-            }
-        }
-
-        if(!$messages){
-        }
-        else{
-            while ($message = $messages->fetch_assoc()) {
-                ?>
-                <script>
-                    team = document.getElementById("team<?php echo $message['team']; ?>");
-                    container = document.createElement("div");
-                        container.id = "message<?php echo $message['id']; ?>"   ;
-                    question = document.createElement("p");
-                        question.textContent = "Question : <?php echo $message['question']; ?>";
-                        container.appendChild(question);
-                    if("<?php echo $message['answer']; ?>"!=""){
-                        answer = document.createElement("p");
-                            answer.className = "answer";
-                            answer.textContent = "Réponse : <?php echo $message['answer']; ?>";
-                            container.appendChild(answer);
-                    }
-                    else{
-                        form = document.createElement("form");
-                            form.className = "message-text";
-                            form.method = 'post';
-                            form.action = 'gamemaster.php';
-                        input = document.createElement("input");
-                            input.type = 'text'; 
-                            input.name = "<?php echo $message['id']; ?>";
-                        button = document.createElement("button");
-                            button.type = 'submit';
-                            button.className = 'button';
-                            button.textContent = 'Répondre';
-                        form.appendChild(input);
-                        form.appendChild(button);
-                        container.appendChild(form);
-                    }
-                    $("#team"+<?php echo $message['team']; ?>+" form").hide();
-                    team.appendChild(container);
-                </script>
-                <?php
-            }
-        }
-        ?>
+        <div id="teams-container"></div>
         
     </div>
-
-    <script>
-        submit = document.getElementsByClassName("button");
-
-        for (var i = 0; i < submit.length; i++) {
-            submit[i].addEventListener('click', function(){
-                location.reload();
-            });
-        }
-    </script>
     
+    <script src="gamemaster.js"></script>
+
 </body>
 
 </html>

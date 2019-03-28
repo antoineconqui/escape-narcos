@@ -33,7 +33,7 @@
         <span id="ask">
             <form method="post" id="message-form">
                 <input type="hidden" name="team" value="<?php echo $_SESSION['team']; ?>">
-                <input type="text" name="message" id="message-text" placeholder=" Chatter avec le GameMaster">
+                <input type="text" name="question" id="message-text" placeholder=" Chatter avec le GameMaster">
                 <button type="button" id="message-button">Envoyer</button>
             </form>
         </span>

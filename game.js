@@ -80,7 +80,7 @@ $('form').bind("keypress", function(e) {
 
 $("#message-button").click(function() {
     $.ajax({
-        url: "send_message.php",
+        url: "send_question.php",
         type: "POST",
         data: $("#message-form").serialize(),
         success:function(){

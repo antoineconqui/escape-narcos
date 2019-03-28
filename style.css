@@ -157,7 +157,7 @@ input{
 
 /* GAMEMASTER */
 
-.message-box{
+.team-box{
     border: 1px solid #d63031;
     border-radius: 5px;
     margin-top: 10px;
@@ -175,32 +175,32 @@ input{
     color : #0984e3;
 }
 
-.message-text{
+.team-body{
     text-align: left;
     padding: 10px;
     width: 80%;
     margin: auto;
 }
 
-.message-text .answer{
+.team-body .answer{
     color: #0984e3;
     padding-left : 20px;
 }
 
-.message-text .b{
+.team-body .b{
     text-decoration: underline;
 }
 
-.message-text form{
+.team-body form{
     text-align: right;
 }
 
-.message-text input{
+.team-body input{
     width: 60%;
     margin: 10px;
 }
 
-.message-text button{
+.team-body button{
     width: 100px;
     border-radius: 5px;
 }
