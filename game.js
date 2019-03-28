@@ -8,8 +8,9 @@ let indices = [
 ];
 let times = [];
 $.cookie("room", 0);
-$.cookie("enigme", 0);
+$.cookie("enigme", 1);
 $.cookie("tenigme", 0);
+$.cookie("question", -1);
 let tenigme = 0;
 let timer = setTimeout(function(){
     $("#indice").show();
@@ -34,19 +35,18 @@ function ReadTime(time) {
 }
 
 function GiveIndice() {
-    alert(indices[enigme]);
+    alert(indices[$.cookie('enigme')]);
 }
 
 function NextEnigme(){
     clearInterval(timer);
-    times[enigme]=Date.now()-times[enigme-1];
+    times[$.cookie('enigme')]=Date.now()-times[$.cookie('enigme')-1];
     $("#indice").hide();
-
-    enigme++;
+    $.cookie('enigme',parseInt($.cookie('enigme'))+1);
     timer = setTimeout(function(){
         $("#indice").show();
-    }, time_indices[enigme]*1000);
-    $("#enigme").text("Enigme n°"+(enigme+1));
+    }, time_indices[$.cookie('enigme')]*1000);
+    $("#enigme").text("Enigme n°"+($.cookie('enigme')));
 }
 
 // ACTIONS
@@ -71,16 +71,36 @@ $("#verrou").click(function(){
     $("#verrou").hide();
 });
 
-$("#message-button").click(function() {
-    // console.log('ok');
-    $.ajax({
-        url: "message.php",
-        type: "POST",
-        data: $("#message-form").serialize()
-    });
-    // $("#message-text").val("");
-    // $("#answer").text("Votre question a bien été envoyée !");
+$('form').bind("keypress", function(e) {
+    if (e.keyCode == 13) {               
+      e.preventDefault();
+      return false;
+    }
+});
 
+$("#message-button").click(function() {
+    $.ajax({
+        url: "send_message.php",
+        type: "POST",
+        data: $("#message-form").serialize(),
+        success:function(){
+            $.ajax({
+                url: "get_message_id.php",
+                type: "POST",
+                success:function(data){
+                    $.cookie('question',parseInt(data));
+                }
+            });
+        }
+    });
+   
+    $("#question").hide();
+    $("#question").text("Q : "+$("#message-text").val());
+    $("#message-text").val("");
+    $("#answer").text("Votre question a bien été envoyée !");
+    setTimeout(function(){
+        $("#answer").text("");
+    }, 5000);
     return false;
 });
 
@@ -97,4 +117,20 @@ setTimeout(function(){
 
 setInterval(function(){
     $("#timer").text(ReadTime(Date.now()-t0));
+},1000);
+
+setInterval(function(){
+    if($.cookie('question')!=-1){
+        $.ajax({
+            url: "get_answer.php",
+            method: "POST",
+            data: "id="+$.cookie('question'),
+            success: function(data){
+                if(data!=""){
+                    $("#question").show();
+                    $("#answer").text("A : "+data);
+                }
+            }
+        });
+    }
 },1000);

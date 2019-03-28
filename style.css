@@ -182,6 +182,11 @@ input{
     margin: auto;
 }
 
+.message-text .answer{
+    color: #0984e3;
+    padding-left : 20px;
+}
+
 .message-text .b{
     text-decoration: underline;
 }
@@ -278,6 +283,11 @@ input{
         border: 0;
         background-color: #2d3436;
         border-radius: 5px;
+    }
+
+    #chat p{
+        width: 100%;
+        text-align: center;
     }
 
     #chat form{

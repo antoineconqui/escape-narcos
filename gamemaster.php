@@ -27,6 +27,9 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <title>Escape The Narcos</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="media/icon.ico">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 </head>
 
 <body>
@@ -42,12 +45,12 @@
 
         <h2>PARTIES EN COURS - <a href="gamemaster.php">ACTUALISER</a></h2>
 
-<?php
-
+        <?php
         foreach($_POST as $id => $answer){
             if($answer!="")
                 $db -> query("UPDATE messages SET answer = '$answer' WHERE id = $id");
         }
+
         if(!$teams){
             echo "<h3>Aucune équipe n'est en train de jouer ...</h3>";
         }
@@ -75,38 +78,40 @@
                 ?>
                 <script>
                     team = document.getElementById("team<?php echo $message['team']; ?>");
-                        container = document.createElement("div");
-                            container.id = "message<?php echo $message['id']; ?>"   ;
-                        message = document.createElement("p");
-                            message.textContent = "Question : <?php echo $message['message']; ?>";
-                            container.appendChild(message);
-                        if("<?php echo $message['answer']; ?>"!=""){
-                            answer = document.createElement("p");
-                                answer.textContent = "Réponse : <?php echo $message['answer']; ?>";
-                                container.appendChild(answer);
-                        }
-                        else{
-                            form = document.createElement("form");
-                                form.className = "message-text";
-                                form.method = 'post';
-                                form.action = 'gamemaster.php';
-                            input = document.createElement("input");
-                                input.type = 'text'; 
-                                input.name = "<?php echo $message['id']; ?>";
-                            button = document.createElement("button");
-                                button.type = 'submit';
-                                button.className = 'button';
-                                button.textContent = 'Répondre';
-                            form.appendChild(input);
-                            form.appendChild(button);
-                            container.appendChild(form);
-                        }
-                        team.appendChild(container);
+                    container = document.createElement("div");
+                        container.id = "message<?php echo $message['id']; ?>"   ;
+                    question = document.createElement("p");
+                        question.textContent = "Question : <?php echo $message['question']; ?>";
+                        container.appendChild(question);
+                    if("<?php echo $message['answer']; ?>"!=""){
+                        answer = document.createElement("p");
+                            answer.className = "answer";
+                            answer.textContent = "Réponse : <?php echo $message['answer']; ?>";
+                            container.appendChild(answer);
+                    }
+                    else{
+                        form = document.createElement("form");
+                            form.className = "message-text";
+                            form.method = 'post';
+                            form.action = 'gamemaster.php';
+                        input = document.createElement("input");
+                            input.type = 'text'; 
+                            input.name = "<?php echo $message['id']; ?>";
+                        button = document.createElement("button");
+                            button.type = 'submit';
+                            button.className = 'button';
+                            button.textContent = 'Répondre';
+                        form.appendChild(input);
+                        form.appendChild(button);
+                        container.appendChild(form);
+                    }
+                    $("#team"+<?php echo $message['team']; ?>+" form").hide();
+                    team.appendChild(container);
                 </script>
                 <?php
             }
         }
-?>
+        ?>
         
     </div>
 

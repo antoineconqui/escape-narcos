@@ -27,22 +27,12 @@
     
     <button id="indice" style="display:none;">UN INDICE ?</button>
 
-
-
-    
-    <div id="reponse" style="display:none;">
-        <span></span>
-        <button type="submit" id="message-button">Envoyer</button>
-    </div>
-
     <div id="chat" style="display:none;">
         <p id="question"></p>
         <p id="answer"></p>
         <span id="ask">
             <form method="post" id="message-form">
-                <input type="hidden" name="team" value="
-                <?php echo $_SESSION['team']; ?>
-                ">
+                <input type="hidden" name="team" value="<?php echo $_SESSION['team']; ?>">
                 <input type="text" name="message" id="message-text" placeholder=" Chatter avec le GameMaster">
                 <button type="button" id="message-button">Envoyer</button>
             </form>
@@ -50,11 +40,6 @@
     </div>
 
     <script src="game.js"></script>
-
-    <script>
-        document.documentElement.requestFullscreen();
-
-    </script>
 
 </body>
 
