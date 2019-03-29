@@ -1,3 +1,5 @@
+<!-- Cette page contient le script de récupération des différents escape game présents dans la base de données  -->
+
 <?php
     require '../db.php';
     $id = $_POST['id'];

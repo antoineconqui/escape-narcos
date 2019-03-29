@@ -1,6 +1,6 @@
 <?php
-    require 'db.php';
-    include 'auth.php';
+    require 'db.php'; //On fait appel au script de connexion à la base de données
+    include 'auth.php'; //On fait appel au script qui vérifie l'authentification
 ?>
 
 <html>
@@ -20,21 +20,21 @@
 
 <body>
 
-    <div id="room1">
-        <?php include 'games/pablo-house.php'; ?>
+    <div id="room1"> <!-- On gère chaque salle dans un cadre qui prend tout la page, afin de ne pas recharger la page à chaque changement de salle dans l'escape game -->
+        <?php include 'games/pablo-house.php'; ?> <!-- Récupère le script de l'escape-game choisi -->
     </div>
 
-    <span id="enigme" style="display:none;">Enigme n°1</span>
+    <span id="enigme" style="display:none;">Enigme n°1</span> <!-- Cadre d'affichage du numéro de l'enigme en cours -->
     
-    <span id="timer" style="display:none;"></span>
+    <span id="timer" style="display:none;"></span> <!-- Cadre d'affichage du timer -->
     
-    <button id="indice" style="display:none;">UN INDICE ?</button>
+    <button id="indice" style="display:none;">UN INDICE ?</button> <!-- Bouton de demande automatique d'un indice -->
 
-    <div id="chat" style="display:none;">
-        <p id="question"></p>
-        <p id="answer"></p>
+    <div id="chat" style="display:none;"> <!-- Cadre de chat avec le game-master -->
+        <p id="question"></p> <!-- Cadre d'affichage de la question posée -->
+        <p id="answer"></p> <!-- Cadre d'affichage de la réponse renvoyée par le game-master -->
         <span id="ask">
-            <form method="post" id="message-form">
+            <form method="post" id="message-form"> <!-- Formulaire d'envoi de la question au game-master -->
                 <input type="hidden" name="team" id="inputteam">
                 <input type="text" name="question" id="message-text" placeholder=" Chatter avec le GameMaster">
                 <button type="button" id="message-button">Envoyer</button>

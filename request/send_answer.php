@@ -1,3 +1,5 @@
+<!-- Cette page contient le script d'envoi de la réponse du gamemaster à la question de numéro $_POST['id'] posée par une équipe -->
+
 <?php
     include '../db.php';
     

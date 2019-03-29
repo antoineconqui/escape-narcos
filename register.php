@@ -1,3 +1,5 @@
+<!-- Il s'agit de la page d'inscription -->
+
 <html>
 
 <head>
@@ -16,12 +18,13 @@
 <body>
 
     <?php
-    require('db.php');
-    if (isset($_REQUEST['pseudo'])){
+    require 'db.php'; //On fait appel au script de connexion à la base de données
+    if (isset($_REQUEST['pseudo'])){ //Si le pseudo a été posté par le formulaire
         $pseudo = $db->real_escape_string(stripslashes($_REQUEST['pseudo']));
-        $password = $db->real_escape_string(stripslashes($_REQUEST['password']));
+        $password = $db->real_escape_string(stripslashes($_REQUEST['password'])); //real_escape_string et stripslashes servent à se prémunir des caractères spéciaux dans les input du formulaire
         $gmpass = $db->real_escape_string(stripslashes($_REQUEST['gmpass']));
-        if($db->query("INSERT INTO users VALUES ('$pseudo', '".md5($password)."', '".md5($gmpass)."')")){
+        if($db->query("INSERT INTO users VALUES ('$pseudo', '".md5($password)."', '".md5($gmpass)."')")){ //Insertion dans la BDD de l'utilisateur $pseudo avec le mot de passe $password (avec cryptage md5)
+            //Si la requête succeed : affichage d'un texte de succes et d'un lien vers login.php
             echo "
             <div class=\"blink\">
                 <h1>ESCAPE THE NARCOS</h1>
@@ -32,7 +35,7 @@
                 <br><br/><a href='login.php'>Se connecter</a></div>
             </div>";
         }
-        else{
+        else{ //Sinon cela signifie qu'il y a déja un utilisateur avec le meme pseudo : affichage d'un texte d'erreur et d'un lien pour rééssayer
             echo "
             <div class=\"blink\">
                 <h1>ESCAPE THE NARCOS</h1>
@@ -44,7 +47,7 @@
             </div>";
         }
     }
-    else{
+    else{ //Si le pseudo n'a pas été posté par le formulaire, on affiche le formulaire de connexion
     ?>
 
     <div class="blink">
@@ -62,11 +65,11 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row"> <!-- Formulaire d'inscription -->
             <form class="form" action="" method="post" name="register">
                 <input type="text" name="pseudo" placeholder="Pseudo" required>
                 <br><br><input type="password" name="password" placeholder="Password" required>
-                <br><br><input type="text" name="gmpass" placeholder="GameMaster Pass">
+                <br><br><input type="text" name="gmpass" placeholder="GameMaster Pass"> <!-- On demande un mot de passe de gamemaster pour éviter que n'importe qui s'inscrive en tant que gamemaster -->
                 <br><br><input name="submit" type="submit" value="Envoyer">
             </form>
         </div>

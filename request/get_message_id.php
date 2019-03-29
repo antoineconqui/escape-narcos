@@ -1,3 +1,5 @@
+<!-- Cette page contient le script de récupération de l'id de la dernière question posée par une équipe -->
+
 <?php
     require '../db.php';
     $result = $db -> query('SELECT id FROM messages ORDER BY id DESC LIMIT 1');

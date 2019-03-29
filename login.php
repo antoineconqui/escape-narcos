@@ -1,6 +1,4 @@
-<?php
-    require('db.php');
-?>
+<!-- Il s'agit de la page de connexion -->
 
 <html>
 
@@ -20,18 +18,18 @@
 <body>
 
     <?php
-        require 'db.php';
+        require 'db.php'; //On fait appel au script de connexion à la base de données
         session_start();
-        if (isset($_POST['pseudo'])){
-            $pseudo = $db->real_escape_string(stripslashes($_REQUEST['pseudo']));
+        if (isset($_POST['pseudo'])){ //Si le pseudo a été posté par le formulaire
+            $pseudo = $db->real_escape_string(stripslashes($_REQUEST['pseudo'])); //real_escape_string et stripslashes servent à se prémunir des caractères spéciaux dans les input du formulaire
             $password = $db->real_escape_string(stripslashes($_REQUEST['password']));
-            $result = $db->query("SELECT * FROM users WHERE pseudo='$pseudo'and password='".md5($password)."'");
-            if(mysqli_num_rows($result)==1){
+            $result = $db->query("SELECT * FROM users WHERE pseudo='$pseudo'and password='".md5($password)."'"); //Recherche dans la BDD de l'utilisateur $pseudo avec le mot de passe $password (avec cryptage md5)
+            if(mysqli_num_rows($result)==1){ //S'il y a un utilisateur qui correspond : définition des variables de session et redirection vers index.php
                 $_SESSION['pseudo'] = $pseudo;
                 $_SESSION['gmpass'] = $result->fetch_assoc()['gmpass'];
                 header("Location: index.php");
             }
-            else{
+            else{ //Sinon affichage d'un message d'erreur et d'un lien pour rééssayer
                 echo "
                 <div class=\"blink\">
                     <h1>ESCAPE THE NARCOS</h1>
@@ -43,7 +41,7 @@
                 </div>";
             }
         }
-        else{
+        else{ //Si le pseudo n'a pas été posté par le formulaire, on affiche le formulaire de connexion
     ?>
 
     <div class="blink">
@@ -64,7 +62,7 @@
 
         </div>
 
-        <div class="row">
+        <div class="row"> <!-- Formulaire de connexion -->
             <form class="form" action="" method="post" name="login">
                 <input type="text" name="pseudo" placeholder="Pseudo" required>
                 <br><br><input type="password" name="password" placeholder="Password" required>

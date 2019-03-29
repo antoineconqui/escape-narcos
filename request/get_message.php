@@ -1,3 +1,5 @@
+<!-- Cette page contient le script de récupération des questions des différentes équipes qui sont actuellement en train de jouer -->
+
 <?php
     require '../db.php';
     $messages = $db -> query('SELECT * FROM messages WHERE team IN (SELECT id FROM teams WHERE playing=1)');

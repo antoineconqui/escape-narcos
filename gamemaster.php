@@ -1,8 +1,10 @@
+<!-- Il s'agit de la page de gestion du game-master -->
+
 <?php
-    require 'db.php';
-    include 'auth.php';
+    require 'db.php'; //On fait appel au script de connexion à la base de données
+    include 'auth.php'; //On fait appel au script qui vérifie l'authentification
     
-    $pseudo = $_SESSION['pseudo'];
+    $pseudo = $_SESSION['pseudo']; //Stock le pseudo du game-master
 ?>
 
 <html>
@@ -31,9 +33,9 @@
 
     <div class="frame">
 
-        <h2 id="nb_team"></h2>
+        <h2 id="nb_team"></h2> <!-- Cadre d'affichage du nombre d'équipe en train de jouer -->
 
-        <div id="teams-container"></div>
+        <div id="teams-container"></div> <!-- Cadre d'affichage des messages d'équipe en train de jouer -->
         
     </div>
     

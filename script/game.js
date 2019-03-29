@@ -1,4 +1,7 @@
-// VARIABLES INITIALES
+// SCRIPT JAVASCRIPT de gestion des interactions dans la partie
+
+
+// DEFINITION DES VARIABLES INITIALES
 
 let t0 = Date.now();
 let time_indices = [10,15];
@@ -16,9 +19,9 @@ let timer = setTimeout(function(){
     $("#indice").show();
 },time_indices[$.cookie("enigme")]*1000);
 
-// FONCTIONS
+// DEFINTION DES FONCTIONS
 
-function ReadTime(time) {
+function ReadTime(time) { //Fonction d'écriture standardisée du temps, utilisée par le timer
     let str = "";
     let sec = Math.floor(time%60000/1000);
     let min = Math.floor((time-sec)/60000);
@@ -34,103 +37,103 @@ function ReadTime(time) {
     return str;
 }
 
-function GiveIndice() {
+function GiveIndice() { //Fonction d'affichage automatique des indices par click sur le bouton
     alert(indices[$.cookie('enigme')]);
 }
 
-function NextEnigme(){
+function NextEnigme(){ //Fonction qui permet de passer à l'énigme suivante
     clearInterval(timer);
-    times[$.cookie('enigme')]=Date.now()-times[$.cookie('enigme')-1];
-    $("#indice").hide();
-    $.cookie('enigme',parseInt($.cookie('enigme'))+1);
-    timer = setTimeout(function(){
+    times[$.cookie('enigme')]=Date.now()-times[$.cookie('enigme')-1]; //Stock le temps de l'enigme précédente
+    $("#indice").hide(); //Cache le bouton de requete d'indice
+    $.cookie('enigme',parseInt($.cookie('enigme'))+1); //Change le cookie correspondant au numéro de l'enigme
+    timer = setTimeout(function(){ //Ajout d'un timer pour l'affichage automatique du bouton de requete d'indice au bout d'un certain temps
         $("#indice").show();
     }, time_indices[$.cookie('enigme')]*1000);
-    $("#enigme").text("Enigme n°"+($.cookie('enigme')));
+    $("#enigme").text("Enigme n°"+($.cookie('enigme'))); //Modifie le texte du cadre d'affichage du numéro de l'enigme en cours
 }
 
-// ACTIONS
-$("#indice").click(function(){
+// DEFINITON DES INTERACTIONS ET EVENTLISTENER
+
+$("#indice").click(function(){ //Click sur le bouton de requete d'indice
     GiveIndice()
 });
 
-$("#interrupteur").click(function(){
-    $("#obscurite").hide();
-    $("#lumiere").show();
+$("#switch").click(function(){ //Click sur l'interrupteur
+    $("#dark").hide();
+    $("#light").show();
     NextEnigme();
 });
-$("#zoomBackground").click(function(){
+$("#zoomBackground").click(function(){ //Click sur le fond flou 
     $("#zoomBackground").hide();
-    $("#verrouZoom").hide();
-    $("#verrou").show();
+    $("#lockerZoom").hide();
+    $("#locker").show();
 });
 
-$("#verrou").click(function(){
+$("#locker").click(function(){ //Click sur le locker
     $("#zoomBackground").show();
-    $("#verrouZoom").show();
-    $("#verrou").hide();
+    $("#lockerZoom").show();
+    $("#locker").hide();
 });
 
 $("#inputteam").val($.cookie('team'));
 
-$('form').bind("keypress", function(e) {
+$('form').bind("keypress", function(e) { //Empèche la soummision de la question au game-master par la touche ENTER
     if (e.keyCode == 13) {               
       e.preventDefault();
       return false;
     }
 });
 
-$("#message-button").click(function() {
-    $.ajax({
+$("#message-button").click(function() { //Click sur le bouton de soumission du la question au game-master
+    $.ajax({ //Requête AJAX d'envoi de la question au game-master dans la BDD
         url: "request/send_question.php",
         type: "POST",
         data: $("#message-form").serialize(),
         success:function(){
-            $.ajax({
+            $.ajax({ //Requête AJAX de récupération de l'id du message qui vient d'être envoyé au game-master
                 url: "request/get_message_id.php",
                 type: "POST",
                 success:function(data){
-                    $.cookie('question',parseInt(data));
+                    $.cookie('question',parseInt(data)); //Stock l'id de la question posée dans les cookies
+                    $("#question").hide(); //Cache le cadre d'affichage de la question posée
+                    $("#question").text("Q : "+$("#message-text").val()); //Stock la question posée dans le cadre d'affichage de la question posée
+                    $("#message-text").val(""); //Vide le texte de l'input de la question posée
+                    $("#answer").text("Votre question a bien été envoyée !"); //Affiche un message de succès
+                    setTimeout(function(){ //Cache le message de succès au bout de 5 secondes
+                        $("#answer").text("");
+                    }, 5000);
                 }
             });
         }
     });
-   
-    $("#question").hide();
-    $("#question").text("Q : "+$("#message-text").val());
-    $("#message-text").val("");
-    $("#answer").text("Votre question a bien été envoyée !");
-    setTimeout(function(){
-        $("#answer").text("");
-    }, 5000);
-    return false;
+    return false; //Ce retour de false permet d'empêcher le rechargement de la page par click sur le bouton de soummision de la question
 });
 
-// TIMERS
+// DEFINITION DES TIMERS ET REQUETES REGULIERES DU JEU
 
 setTimeout(function(){
-    $("#titre1").hide();
-    $("#indication1").show();
-    $("#interrupteur").show();
-    $("#enigme").show();
-    $("#timer").show();
-    $("#chat").show();
+    $("#titre1").hide(); //Cache le titre
+    $("#indication1").show(); //Affiche l'indication
+    $("#switch").show(); //Affiche l'interrupteur
+    $("#enigme").show(); //Affiche le numéro d'énigme
+    $("#timer").show(); //Affiche le timer
+    $("#chat").show(); //Affiche le chat
 }, 3000);
 
-setInterval(function(){
-    $("#timer").text(ReadTime(Date.now()-t0));
+setInterval(function(){ //Chaque seconde
+    $("#timer").text(ReadTime(Date.now()-t0)); //Incrémente le timer
 },1000);
 
-setInterval(function(){
-    if($.cookie('question')!=-1){
-        $.ajax({
+setInterval(function(){ //Chaque seconde
+    if($.cookie('question')!=-1){ //Si une question a été posée au game-master
+        $.ajax({ //Requête AJAX qui récupère la réponse du game-master à la question posée
             url: "request/get_answer.php",
             method: "POST",
             data: "id="+$.cookie('question'),
             success: function(data){
-                if(data!=""){
-                    $("#question").show();
-                    $("#answer").text("A : "+data);
+                if(data!=""){ // Si le game-master a répondu à la question posée
+                    $("#question").show(); //Affichage de la question
+                    $("#answer").text("A : "+data); //Affichage de la réponse
                 }
             }
         });

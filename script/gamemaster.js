@@ -1,3 +1,7 @@
+// SCRIPT JAVASCRIPT de gestion des interactions dans la page du game-master
+
+//DEFINTION DES VARIABLES INITIALES DE CONSTRUCTION DE LA PAGE
+
 let teams;
 let messages;
 let nbTeams;
@@ -23,16 +27,15 @@ let button;
 let teamsinside = [];
 let messagesinside = [];
 
+// DEFINITION DES TIMERS ET REQUETES REGULIERES DU JEU
 
+setInterval(function(){ //Chaque seconde
 
-
-setInterval(function(){
-
-    $.ajax({
+    $.ajax({ //Requête AJAX de récupération des équipes en train de jouer
         url: "request/get_team.php",
         method: "POST",
         success: function(data){
-            if(data!=""){
+            if(data!=""){ //S'il y a au moins une équipe en train de jouer
                 teams = JSON.parse(data);
                 nbTeams = Object.keys(teams).length;
                 str = nbTeams+" équipe";

@@ -1,3 +1,5 @@
+<!-- Cette page contient le script de récupération de la réponse à la question id = $_POST['id'] du gamemaster -->
+
 <?php
     require '../db.php';
     $id = $_POST['id'];

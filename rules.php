@@ -1,6 +1,8 @@
+<!-- Il s'agit de la page d'affichage des règles de l'escape-game -->
+
 <?php
-    require('db.php');
-    include("auth.php");
+    require 'db.php'; //On fait appel au script de connexion à la base de données
+    include 'auth.php'; //On fait appel au script qui vérifie l'authentification
 ?>
 
 <html>
