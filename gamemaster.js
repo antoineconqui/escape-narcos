@@ -24,6 +24,8 @@ let teamsinside = [];
 let messagesinside = [];
 
 
+
+
 setInterval(function(){
 
     $.ajax({
@@ -33,7 +35,12 @@ setInterval(function(){
             if(data!=""){
                 teams = JSON.parse(data);
                 nbTeams = Object.keys(teams).length;
-                $("#nb_team").text(nbTeams+" équipes sont en train de jouer"); 
+                str = nbTeams+" équipe";
+                if(nbTeams==1)
+                    str+=" est en train de jouer";
+                else
+                    str+="s sont en train de jouer";
+                $("#nb_team").text(str.toUpperCase()); 
                 teamscontainer = document.getElementById("teams-container");
                 for (let i = 0; i < nbTeams; i++) {
                     if($.inArray(teams[i]['id'], teamsinside)==-1){
@@ -46,6 +53,7 @@ setInterval(function(){
                             for (let j = 2; j < 5; j++)
                                 if (teams[i]['player'+j]!="")
                                     str+=" - "+teams[i]['player'+j];
+                            str+="  |  Escape Game n°"+teams[i]['game'];
                             teamtitle.textContent = str;
                         teambody = document.createElement("div");
                             teambody.className = "team-body";
@@ -98,6 +106,7 @@ setInterval(function(){
                             input = document.createElement("input");
                                 input.type = 'text'; 
                                 input.name = 'answer';
+                                input.className = 'inputanswer';
                             button = document.createElement("button");
                                 button.type = 'button';
                                 button.className = 'button';
@@ -124,7 +133,15 @@ setInterval(function(){
             $.ajax({
                 url: "send_answer.php",
                 type: "POST",
-                data: $("#form"+id).serialize()
+                data: $("#form"+id).serialize(),
+                success: function(){
+                    answer = document.createElement("p");
+                        answer.className = "answer";
+                        answer.textContent = "Réponse : "+$("#form"+id+" .inputanswer").val();
+                    document.getElementById("message"+id).removeChild(document.getElementById("form"+id));
+                    document.getElementById("message"+id).appendChild(answer);
+                    ;
+                }
             });
             return false;
         });

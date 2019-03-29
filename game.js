@@ -71,6 +71,8 @@ $("#verrou").click(function(){
     $("#verrou").hide();
 });
 
+$("#inputteam").val($.cookie('team'));
+
 $('form').bind("keypress", function(e) {
     if (e.keyCode == 13) {               
       e.preventDefault();

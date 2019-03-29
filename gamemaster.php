@@ -3,7 +3,6 @@
     include 'auth.php';
     
     $pseudo = $_SESSION['pseudo'];
-
 ?>
 
 <html>
@@ -30,9 +29,7 @@
 
     <div class="frame">
 
-        <h2>PARTIES EN COURS - <a href="gamemaster.php">ACTUALISER</a></h2>
-
-        <h3 id="nb_team"></h3>
+        <h2 id="nb_team"></h2>
 
         <div id="teams-container"></div>
         

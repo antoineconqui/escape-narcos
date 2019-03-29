@@ -46,18 +46,24 @@
         if($problem==0){
             $query2.="',1)\"";
             echo $str."<br><button id='launch'>Lancer la partie</button>";
-            $teams = $db->query("SELECT id FROM teams ORDER BY id DESC LIMIT 1");
-            $_SESSION['team']=$teams->fetch_assoc()['id'];
-            
             ?>
             <script>
                 $("#launch").click(function(){
                     $.ajax({
                         url: "add_team.php",
                         type: "POST",
-                        data: <?php echo $query1; ?>+$.cookie('game')+<?php echo $query2; ?>
+                        data: <?php echo $query1; ?>+$.cookie('game')+<?php echo $query2; ?>,
+                        success: function(){
+                            $.ajax({
+                                url: "get_team_id.php",
+                                type: "POST",
+                                success: function(data){
+                                    $.cookie('team',data);
+                                    window.location.href = "rules.php";
+                                }
+                            });
+                        }   
                     });
-                    window.location.href = "game.php";
                 });
             </script>
             <?php
