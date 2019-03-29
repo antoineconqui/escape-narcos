@@ -12,10 +12,10 @@
     <link rel="icon" type="image/png" href="media/icon.ico">
     <link rel="stylesheet" href="libraries/bootstrap.min.css">
     <link rel="stylesheet" href="style.css"/>
-    <script src="libraries/bootstrap.min.js"></script>
     <script src="libraries/jquery-3.3.1.min.js"></script>
     <script src="libraries/jquery.cookie.js"></script>
     <script src="libraries/popper.min.js"></script>
+    <script src="libraries/bootstrap.js"></script>
 </head>
 
 <body>

@@ -1,5 +1,5 @@
 <?php
-    include 'db.php';
+    include '../db.php';
     
     $id = $_POST['id'];
     $answer = $_POST['answer'];

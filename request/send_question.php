@@ -1,5 +1,5 @@
 <?php
-    include 'db.php';
+    include '../db.php';
     $date = date("Y-m-d H:i:s");
     $team = $_POST['team'];
     $question = $_POST['question'];

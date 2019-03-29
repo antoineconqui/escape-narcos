@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Escape The Narcos</title>
     <link rel="icon" type="image/png" href="media/icon.ico">
-    <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="libraries/bootstrap.min.css">
-    <script src="libraries/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css"/>
     <script src="libraries/jquery-3.3.1.min.js"></script>
     <script src="libraries/jquery.cookie.js"></script>
     <script src="libraries/popper.min.js"></script>
+    <script src="libraries/bootstrap.js"></script>
 </head>
 
 <body>

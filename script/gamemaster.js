@@ -131,7 +131,7 @@ setInterval(function(){
         let id = submit[i].id;
         submit[i].addEventListener('click', function(){
             $.ajax({
-                url: "request/send_answer.php",
+                url: "request/xsend_answer.php",
                 type: "POST",
                 data: $("#form"+id).serialize(),
                 success: function(){

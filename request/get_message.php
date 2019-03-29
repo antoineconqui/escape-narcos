@@ -1,5 +1,5 @@
 <?php
-    require 'db.php';
+    require '../db.php';
     $messages = $db -> query('SELECT * FROM messages WHERE team IN (SELECT id FROM teams WHERE playing=1)');
     if(!$messages){
         echo "";

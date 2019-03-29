@@ -1,5 +1,5 @@
 <?php
-    require 'db.php';
+    require '../db.php';
     $teams = $db -> query('SELECT * FROM teams WHERE playing=1');
     while($team = $teams->fetch_assoc()){
         $json[] = array(
