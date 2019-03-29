@@ -82,12 +82,12 @@ $('form').bind("keypress", function(e) {
 
 $("#message-button").click(function() {
     $.ajax({
-        url: "send_question.php",
+        url: "request/send_question.php",
         type: "POST",
         data: $("#message-form").serialize(),
         success:function(){
             $.ajax({
-                url: "get_message_id.php",
+                url: "request/get_message_id.php",
                 type: "POST",
                 success:function(data){
                     $.cookie('question',parseInt(data));
@@ -124,7 +124,7 @@ setInterval(function(){
 setInterval(function(){
     if($.cookie('question')!=-1){
         $.ajax({
-            url: "get_answer.php",
+            url: "request/get_answer.php",
             method: "POST",
             data: "id="+$.cookie('question'),
             success: function(data){

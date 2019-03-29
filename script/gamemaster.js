@@ -29,7 +29,7 @@ let messagesinside = [];
 setInterval(function(){
 
     $.ajax({
-        url: "get_team.php",
+        url: "request/get_team.php",
         method: "POST",
         success: function(data){
             if(data!=""){
@@ -73,7 +73,7 @@ setInterval(function(){
     });
 
     $.ajax({
-        url: "get_message.php",
+        url: "request/get_message.php",
         method: "POST",
         success: function(data){
             if(data!=""){
@@ -131,7 +131,7 @@ setInterval(function(){
         let id = submit[i].id;
         submit[i].addEventListener('click', function(){
             $.ajax({
-                url: "send_answer.php",
+                url: "request/send_answer.php",
                 type: "POST",
                 data: $("#form"+id).serialize(),
                 success: function(){

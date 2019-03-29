@@ -50,12 +50,12 @@
             <script>
                 $("#launch").click(function(){
                     $.ajax({
-                        url: "add_team.php",
+                        url: "request/add_team.php",
                         type: "POST",
                         data: <?php echo $query1; ?>+$.cookie('game')+<?php echo $query2; ?>,
                         success: function(){
                             $.ajax({
-                                url: "get_team_id.php",
+                                url: "request/get_team_id.php",
                                 type: "POST",
                                 success: function(data){
                                     $.cookie('team',data);

@@ -10,14 +10,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <title>Escape The Narcos</title>
-    <link rel="stylesheet" href="style.css"/>
     <link rel="icon" type="image/png" href="media/icon.ico">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="libraries/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css"/>
+    <script src="libraries/bootstrap.min.js"></script>
+    <script src="libraries/jquery-3.3.1.min.js"></script>
+    <script src="libraries/jquery.cookie.js"></script>
+    <script src="libraries/popper.min.js"></script>
 </head>
 
 <body>
@@ -93,7 +93,7 @@
 
     </div>
 
-    <script src="script.js"></script>
+    <script src="script/script.js"></script>
     
 </body>
 
