@@ -14,15 +14,15 @@
     <div id="zoomBackground" style="display:none;"></div> <!-- Fond flou esthétique -->
     <button id="locker"></button> <!-- Cadre clickable de verrou -->
     <div class="zoom" id="lockerZoom" style="display:none;"> <!-- Cadre de zoom vers le verrou -->
-        <form action="locker.php" method="get"> <!-- Formulaire du code du verrou -->
-            <h4>locker</h4>
+        <form method="post"> <!-- Formulaire du code du verrou -->
+            <h4>Verrou</h4>
             <br><br><br>
-            <input type="number" name="int1" min="0" max="9">
-            <input type="number" name="int2" min="0" max="9">
-            <input type="number" name="int3" min="0" max="9">
-            <input type="number" name="int4" min="0" max="9">
+            <input type="number" id="int1" min="0" max="9">
+            <input type="number" id="int2" min="0" max="9">
+            <input type="number" id="int3" min="0" max="9">
+            <input type="number" id="int4" min="0" max="9">
             <br><br><br>
-            <button type="submit">Valider</button>
+            <button type="button" id="button-verrou">Valider</button>
             <span id="message"></span>
         </form>
     </div>

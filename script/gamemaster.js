@@ -35,7 +35,6 @@ setInterval(function(){ //Chaque seconde
         url: "request/get_team.php",
         method: "POST",
         success: function(data){
-            console.log(data);
             if(data!=""){ //S'il y a au moins une équipe en train de jouer
                 teams = JSON.parse(data);
                 nbTeams = Object.keys(teams).length;
@@ -62,7 +61,7 @@ setInterval(function(){ //Chaque seconde
                         teamdelete = document.createElement("button");
                             teamdelete.className = "delete";
                             teamdelete.id = "delete"+teams[i]['id'];
-                            teamdelete.textContent = "Supprimer";
+                            teamdelete.textContent = "Abandon";
                         teambody = document.createElement("div");
                             teambody.className = "team-body";
                             teambody.id = "team"+teams[i]['id'];

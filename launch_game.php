@@ -43,7 +43,7 @@
         }
 
         if($problem==0){ //Si tous les joueurs sont valides
-            $query2.="',1)\"";
+            $query2.="',1,'')\"";
             echo $str."<br><button id='launch'>Lancer la partie</button>";
             ?>
             <script>

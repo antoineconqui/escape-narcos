@@ -216,6 +216,25 @@ input{
     border-radius: 5px;
 }
 
+/* STATISTIQUES */
+
+table{
+    width: 90%;
+    margin: auto;
+}
+
+th, td{
+    text-align: center;
+    width: 33%;
+    border-right: #dfe6e9 solid 1px;
+    border-left: #dfe6e9 solid 1px;
+}
+
+table, tbody{
+    border: 1px solid #dfe6e9;
+    border-radius: 5px;
+}
+
 /* RULES */
 
 .rules{

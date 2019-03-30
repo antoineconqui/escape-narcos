@@ -1,23 +1,36 @@
 // SCRIPT JAVASCRIPT de gestion des interactions dans la partie
 
 
+
 // DEFINITION DES VARIABLES INITIALES
 
 let t0 = Date.now();
-let time_indices = [10,15];
-let indices = [
-    "Trouvez l'interrupteur.",
-    "Trouvez un moyen d'ouvrir la porte."   
-];
-let times = [];
+let tenigme = 0;
 $.cookie("room", 0);
 $.cookie("enigme", 1);
 $.cookie("tenigme", 0);
 $.cookie("question", -1);
-let tenigme = 0;
-let timer = setTimeout(function(){
-    $("#indice").show();
-},time_indices[$.cookie("enigme")]*1000);
+let game;
+let times;  
+let indices;
+let delay_indices;
+let timer;
+$.ajax({
+    url: 'request/get_game.php',
+    type: 'POST',
+    data: 'id='+$.cookie('game'),
+    success:function(data){
+        game = JSON.parse(data)[0];
+        times = new Array(game['nbEnigme']);
+        indices = JSON.parse(game['text_indices']);
+        delay_indices = JSON.parse(game['delay_indices']);
+        delay_indices.push(0);
+        timer = setTimeout(function(){
+            $("#indice").show();
+        },delay_indices[$.cookie("enigme")]*1000);
+    }
+});
+
 
 // DEFINTION DES FONCTIONS
 
@@ -46,12 +59,13 @@ function GiveIndice() { //Fonction d'affichage automatique des indices par click
 
 function NextEnigme(){ //Fonction qui permet de passer à l'énigme suivante
     clearInterval(timer);
-    times[$.cookie('enigme')]=Date.now()-times[$.cookie('enigme')-1]; //Stock le temps de l'enigme précédente
+    times[$.cookie('enigme')-1]=Date.now()-t0-tenigme; //Stock le temps de l'enigme précédente
+    tenigme += times[$.cookie('enigme')-1];
     $("#indice").hide(); //Cache le bouton de requete d'indice
     $.cookie('enigme',parseInt($.cookie('enigme'))+1); //Change le cookie correspondant au numéro de l'enigme
     timer = setTimeout(function(){ //Ajout d'un timer pour l'affichage automatique du bouton de requete d'indice au bout d'un certain temps
         $("#indice").show();
-    }, time_indices[$.cookie('enigme')]*1000);
+    }, delay_indices[$.cookie('enigme')]*1000);
     $("#enigme").text("Enigme n°"+($.cookie('enigme'))); //Modifie le texte du cadre d'affichage du numéro de l'enigme en cours
 }
 
@@ -76,6 +90,26 @@ $("#locker").click(function(){ //Click sur le locker
     $("#zoomBackground").show();
     $("#lockerZoom").show();
     $("#locker").hide();
+});
+
+$("#button-verrou").click(function(){
+    int=[];
+    for (let i = 1; i < 5; i++)
+        int.push($("#int"+i).val());
+    if(int[0]==1 && int[1]==7 && int[2]==8 && int[3]==9){
+        NextEnigme();
+        for (let i = 0; i < times.length; i++)
+            times[i]=Math.floor(times[i]/=1000);
+        times = times.join(' - ');
+        $.ajax({
+            url: 'request/send_times.php',
+            type: 'POST',
+            data: { id: $.cookie('team'), times: times },
+            success:function(){
+                window.location = "victory.php";
+            }
+        });
+    }
 });
 
 $("#inputteam").val($.cookie('team'));
