@@ -1,6 +1,5 @@
-<!-- Cette page contient le script de récupération des questions des différentes équipes qui sont actuellement en train de jouer -->
 
-<?php
+<?php //Cette page contient le script de récupération des questions des différentes équipes qui sont actuellement en train de jouer
     require '../db.php';
     $messages = $db -> query('SELECT * FROM messages WHERE team IN (SELECT id FROM teams WHERE playing=1)');
     if(!$messages){
@@ -11,7 +10,6 @@
             $json[] = array(
                 'id' => $message['id'],
                 'date' => $message['date'],
-                'game' => $message['game'],
                 'team' => $message['team'],
                 'question' => $message['question'],
                 'answer' => $message['answer'],

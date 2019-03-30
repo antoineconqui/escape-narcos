@@ -29,9 +29,12 @@ function ReadTime(time) { //Fonction d'écriture standardisée du temps, utilis�
         str+=min+" minute";
         if(min>1)
             str+="s";
-        str+=" - ";
+        if(sec!=0)
+            str+=" - ";
     }
-    str+=sec+" seconde"
+    if(sec!=0){
+        str+=sec+" seconde"
+    }
     if(sec>1)
         str+="s";
     return str;
@@ -97,10 +100,12 @@ $("#message-button").click(function() { //Click sur le bouton de soumission du l
                     $.cookie('question',parseInt(data)); //Stock l'id de la question posée dans les cookies
                     $("#question").hide(); //Cache le cadre d'affichage de la question posée
                     $("#question").text("Q : "+$("#message-text").val()); //Stock la question posée dans le cadre d'affichage de la question posée
+                    $("#question").hide(); //Cache le cadre d'affichage de la question posée
                     $("#message-text").val(""); //Vide le texte de l'input de la question posée
                     $("#answer").text("Votre question a bien été envoyée !"); //Affiche un message de succès
+                    $("#answer").show(); //Affiche un message de succès
                     setTimeout(function(){ //Cache le message de succès au bout de 5 secondes
-                        $("#answer").text("");
+                        $("#answer").hide();
                     }, 5000);
                 }
             });
@@ -132,8 +137,9 @@ setInterval(function(){ //Chaque seconde
             data: "id="+$.cookie('question'),
             success: function(data){
                 if(data!=""){ // Si le game-master a répondu à la question posée
-                    $("#question").show(); //Affichage de la question
                     $("#answer").text("A : "+data); //Affichage de la réponse
+                    $("#question").show(); //Affichage de la question
+                    $("#answer").show(); //Affichage de la réponse
                 }
             }
         });

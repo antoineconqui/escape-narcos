@@ -31,8 +31,8 @@
     <button id="indice" style="display:none;">UN INDICE ?</button> <!-- Bouton de demande automatique d'un indice -->
 
     <div id="chat" style="display:none;"> <!-- Cadre de chat avec le game-master -->
-        <p id="question"></p> <!-- Cadre d'affichage de la question posée -->
-        <p id="answer"></p> <!-- Cadre d'affichage de la réponse renvoyée par le game-master -->
+        <p id="question" style="display:none;"></p> <!-- Cadre d'affichage de la question posée -->
+        <p id="answer" style="display:none;"></p> <!-- Cadre d'affichage de la réponse renvoyée par le game-master -->
         <span id="ask">
             <form method="post" id="message-form"> <!-- Formulaire d'envoi de la question au game-master -->
                 <input type="hidden" name="team" id="inputteam">

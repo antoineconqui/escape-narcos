@@ -1,6 +1,4 @@
-<!-- Cette page contient le script de récupération des différents escape game présents dans la base de données  -->
-
-<?php
+<?php //Cette page contient le script de récupération des différents escape game présents dans la base de données
     require '../db.php';
     $id = $_POST['id'];
     $games = $db -> query('SELECT * FROM games WHERE id='.$id);

@@ -1,6 +1,5 @@
-<!-- Cette page contient le script de récupération des équipes qui sont actuellement en train de jouer -->
+<?php // Cette page contient le script de récupération des équipes qui sont actuellement en train de jouer
 
-<?php
     require '../db.php';
     $teams = $db -> query('SELECT * FROM teams WHERE playing=1');
     while($team = $teams->fetch_assoc()){

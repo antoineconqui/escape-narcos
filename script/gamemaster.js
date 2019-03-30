@@ -35,6 +35,7 @@ setInterval(function(){ //Chaque seconde
         url: "request/get_team.php",
         method: "POST",
         success: function(data){
+            console.log(data);
             if(data!=""){ //S'il y a au moins une équipe en train de jouer
                 teams = JSON.parse(data);
                 nbTeams = Object.keys(teams).length;
@@ -58,10 +59,15 @@ setInterval(function(){ //Chaque seconde
                                     str+=" - "+teams[i]['player'+j];
                             str+="  |  Escape Game n°"+teams[i]['game'];
                             teamtitle.textContent = str;
+                        teamdelete = document.createElement("button");
+                            teamdelete.className = "delete";
+                            teamdelete.id = "delete"+teams[i]['id'];
+                            teamdelete.textContent = "Supprimer";
                         teambody = document.createElement("div");
                             teambody.className = "team-body";
                             teambody.id = "team"+teams[i]['id'];
                         teamheader.appendChild(teamtitle);
+                        teamheader.appendChild(teamdelete);
                         teambox.appendChild(teamheader);
                         teambox.appendChild(teambody);
                         teamscontainer.appendChild(teambox);
@@ -75,10 +81,11 @@ setInterval(function(){ //Chaque seconde
         }
     });
 
-    $.ajax({
+    $.ajax({ //Requête AJAX de récupération des messages
         url: "request/get_message.php",
         method: "POST",
         success: function(data){
+            console.log(data);
             if(data!=""){
                 messages = JSON.parse(data);
                 nbMessages = Object.keys(messages).length;         
@@ -134,10 +141,11 @@ setInterval(function(){ //Chaque seconde
         let id = submit[i].id;
         submit[i].addEventListener('click', function(){
             $.ajax({
-                url: "request/xsend_answer.php",
+                url: "request/send_answer.php",
                 type: "POST",
                 data: $("#form"+id).serialize(),
                 success: function(){
+
                     answer = document.createElement("p");
                         answer.className = "answer";
                         answer.textContent = "Réponse : "+$("#form"+id+" .inputanswer").val();
@@ -148,6 +156,22 @@ setInterval(function(){ //Chaque seconde
             });
             return false;
         });
+    }
+
+    erase = document.getElementsByClassName("delete");
+    for (var i = 0; i < erase.length; i++) {
+        let id = erase[i].id;
+        id = id.substring(6);
+        erase[i].addEventListener('click', function(){
+            $.ajax({
+                url: "request/delete_team.php",
+                type: "POST",
+                data: "id="+id,
+                success: function(){
+                    document.getElementById("team"+id).parentNode.hidden = true;
+                }
+            });
+        }); 
     }
 
 },1000);
