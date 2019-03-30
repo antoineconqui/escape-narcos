@@ -1,6 +1,6 @@
 <?php
-    require('db.php');
-    include("auth.php");
+    require 'db.php'; //On fait appel au script de connexion à la base de données
+    include 'auth.php'; //On fait appel au script qui vérifie l'authentification
 ?>
 
 <html>
@@ -23,13 +23,7 @@
 <?php
     $pseudo = $_SESSION['pseudo'];
 
-    $games=$db->query("SELECT g.team, g.times FROM teams t, games g
-                        WHERE g.team IN
-                            (SELECT id FROM teams
-                            WHERE player1='$pseudo'
-                                OR player2='$pseudo'
-                                OR player3='$pseudo'
-                                OR player4='$pseudo')");
+    $teams = $db->query("SELECT * FROM teams WHERE player1='".$pseudo."' OR player2='".$pseudo."' OR player3='".$pseudo."' OR player4='".$pseudo."'");
 ?>
 
     <div class="blink">
@@ -44,12 +38,12 @@
         <h2>Statistiques du joueur</h2>
 
 <?php
-        if(!$games){
+        if(!$teams){
             echo "<h4>Vous n'avez pas encore fait de parties ...</h4>";
         }
         else{
-            while ($game = $games->fetch_assoc()) {
-			    echo $game['team'].' ';
+            while ($team = $teams->fetch_assoc()) {
+			    echo $team['id'].' ';
             }
         }
 ?>
