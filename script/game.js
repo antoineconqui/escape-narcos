@@ -100,7 +100,7 @@ $("#button-verrou").click(function(){
         NextEnigme();
         for (let i = 0; i < times.length; i++)
             times[i]=Math.floor(times[i]/=1000);
-        times = times.join(' - ');
+        times = times.join(' + ');
         $.ajax({
             url: 'request/send_times.php',
             type: 'POST',

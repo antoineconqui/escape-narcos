@@ -4,6 +4,7 @@
     $pseudo = $_SESSION['pseudo'];
 
     $teams = $db->query("SELECT * FROM teams WHERE (player1='".$pseudo."' OR player2='".$pseudo."' OR player3='".$pseudo."' OR player4='".$pseudo."') AND playing=0");
+    
 ?>
 
 <html>
@@ -44,18 +45,22 @@
                         <tr>
                             <th>Escape Game</th>
                             <th>Coéquipiers</th>
+                            <th>Temps total</th>
                             <th>Temps enigmes (en secondes)</th>
                         </tr>
                     </thead>
                     <tbody>';
             while ($team = $teams->fetch_assoc()) {
-                ?><script>console.log(<?php echo $team['times']; ?>)</script><?php
+                
                 echo '  <tr>
                             <td>'.$team['game'].'</td>
                             <td>';
                 for ($i=2; $i < 4; $i++)
                     if ($team['player'.$i]!="")
                         echo $team['player'.$i].' ';
+                echo '      </td>
+                            <td>';
+                ?><script>document.write(<?php echo $team['times']; ?>)</script><?php
                 echo '      </td>
                             <td>'.$team['times'].'</td>
                         </tr>';

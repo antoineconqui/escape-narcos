@@ -16,13 +16,12 @@
     <div class="zoom" id="lockerZoom" style="display:none;"> <!-- Cadre de zoom vers le verrou -->
         <form method="post"> <!-- Formulaire du code du verrou -->
             <h4>Verrou</h4>
-            <br><br><br>
+            <br><h6>'Prison inspired by french Bastille ...'</h6><br><br>
             <input type="number" id="int1" min="0" max="9">
             <input type="number" id="int2" min="0" max="9">
             <input type="number" id="int3" min="0" max="9">
             <input type="number" id="int4" min="0" max="9">
-            <br><br><br>
-            <button type="button" id="button-verrou">Valider</button>
+            <br><button type="button" id="button-verrou">Valider</button>
             <span id="message"></span>
         </form>
     </div>
