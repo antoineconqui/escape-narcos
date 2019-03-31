@@ -106,7 +106,7 @@ $("#button-verrou").click(function(){
             type: 'POST',
             data: { id: $.cookie('team'), times: times },
             success:function(){
-                window.location = "victory.php";
+                window.location = "victory.php?team="+$.cookie('team');
             }
         });
     }

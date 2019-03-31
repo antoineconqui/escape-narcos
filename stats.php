@@ -61,7 +61,7 @@
                 echo '      </td>
                             <td>';
                 ?><script>document.write(<?php echo $team['times']; ?>)</script><?php
-                echo '      </td>
+                echo ' secondes</td>
                             <td>'.$team['times'].'</td>
                         </tr>';
             }
