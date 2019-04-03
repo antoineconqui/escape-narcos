@@ -57,7 +57,7 @@
             
             <?php 
             for ($i=0; $i < count($team_tab); $i++) { 
-                echo '<p>    Enigme n°'.$i.' : ';
+                echo '<p>    Enigme n°'.($i+1).' : ';
                 ?><script>document.write(ReadTime((<?php echo $team_tab[$i]; ?>)*1000));</script><?php
                 echo '</p>';
             }

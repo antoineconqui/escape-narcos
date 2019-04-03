@@ -1,4 +1,4 @@
-// SCRIPT JAVASCRIPT de gestion des interactions dans la page du game-master
+// SCRIPT JAAVASCRIPT de gestion des interactions dans la page du game-master
 
 //DEFINTION DES VARIABLES INITIALES DE CONSTRUCTION DE LA PAGE
 
@@ -84,7 +84,6 @@ setInterval(function(){ //Chaque seconde
         url: "request/get_message.php",
         method: "POST",
         success: function(data){
-            console.log(data);
             if(data!=""){
                 messages = JSON.parse(data);
                 nbMessages = Object.keys(messages).length;         
@@ -139,6 +138,7 @@ setInterval(function(){ //Chaque seconde
     for (var i = 0; i < submit.length; i++) {
         let id = submit[i].id;
         submit[i].addEventListener('click', function(){
+            console.log($("#form"+id).serialize());
             $.ajax({
                 url: "request/send_answer.php",
                 type: "POST",
